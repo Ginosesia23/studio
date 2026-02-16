@@ -24,6 +24,36 @@
       "description": "Modern minimalist office interior",
       "imageUrl": "https://picsum.photos/seed/elevate-vision/800/600",
       "imageHint": "office minimalist"
+    },
+    {
+      "id": "logo-1",
+      "description": "Abstract company logo placeholder 1",
+      "imageUrl": "https://picsum.photos/seed/logo1/200/80",
+      "imageHint": "abstract logo"
+    },
+    {
+      "id": "logo-2",
+      "description": "Abstract company logo placeholder 2",
+      "imageUrl": "https://picsum.photos/seed/logo2/200/80",
+      "imageHint": "abstract logo"
+    },
+    {
+      "id": "logo-3",
+      "description": "Abstract company logo placeholder 3",
+      "imageUrl": "https://picsum.photos/seed/logo3/200/80",
+      "imageHint": "abstract logo"
+    },
+    {
+      "id": "logo-4",
+      "description": "Abstract company logo placeholder 4",
+      "imageUrl": "https://picsum.photos/seed/logo4/200/80",
+      "imageHint": "abstract logo"
+    },
+    {
+      "id": "logo-5",
+      "description": "Abstract company logo placeholder 5",
+      "imageUrl": "https://picsum.photos/seed/logo5/200/80",
+      "imageHint": "abstract logo"
     }
   ]
 }
