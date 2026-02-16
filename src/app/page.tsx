@@ -4,7 +4,7 @@ import { Hero } from "@/components/sections/Hero";
 import { TrustedCompanies } from "@/components/sections/TrustedCompanies";
 import { Services } from "@/components/sections/Services";
 import { CustomSolutions } from "@/components/sections/CustomSolutions";
-import { AiRecommender } from "@/components/sections/AiRecommender";
+import { ManagedSupport } from "@/components/sections/ManagedSupport";
 import { AboutUs } from "@/components/sections/AboutUs";
 import { InquiryForm } from "@/components/sections/InquiryForm";
 import { Footer } from "@/components/layout/Footer";
@@ -17,7 +17,7 @@ export default function Home() {
       <TrustedCompanies />
       <Services />
       <CustomSolutions />
-      <AiRecommender />
+      <ManagedSupport />
       <AboutUs />
       <InquiryForm />
       <Footer />

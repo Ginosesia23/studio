@@ -4,8 +4,8 @@
 import React from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Zap, Database, Github, Layout } from "lucide-react";
-import { PlaceHolderImages } from "@/lib/placeholder-images";
+import { ArrowRight, Zap, Database, Github, Layout, ShieldCheck } from "lucide-react";
+import { PlaceHolderImages } from "@/app/lib/placeholder-images";
 import Link from "next/link";
 
 export function Hero() {
@@ -19,27 +19,27 @@ export function Hero() {
         <div className="flex flex-col lg:flex-row items-center gap-16">
           <div className="flex-1 text-center lg:text-left">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent/10 text-accent text-sm font-bold mb-8">
-              <Zap size={16} className="fill-current" />
-              <span className="uppercase tracking-widest">Modern Stack Specialist</span>
+              <ShieldCheck size={16} className="fill-current" />
+              <span className="uppercase tracking-widest">Managed Hosting & Support</span>
             </div>
             
             <h1 className="font-headline text-5xl lg:text-7xl font-black leading-tight text-primary mb-8">
-              Launch Faster. <br />
-              <span className="text-accent">Scale</span> Without <br />
-              The Friction.
+              Host Smarter. <br />
+              <span className="text-accent">Support</span> Faster. <br />
+              Grow Better.
             </h1>
             
             <p className="text-xl text-muted-foreground mb-10 max-w-xl mx-auto lg:mx-0 leading-relaxed">
-              We help startups build, deploy, and scale using the world's most powerful tech stack: 
-              <strong> Vercel, Supabase, and GitHub.</strong> Focused support for modern founders.
+              We specialize in helping small companies build and manage their infrastructure using 
+              <strong> Vercel, Supabase, and GitHub.</strong> Dedicated technical support for growing founders.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start">
               <Button size="lg" asChild className="bg-primary text-white hover:bg-primary/90 font-bold h-16 px-10 text-lg rounded-2xl">
-                <Link href="#contact">Build My Stack</Link>
+                <Link href="#contact">Get Technical Support</Link>
               </Button>
               <Button size="lg" variant="outline" asChild className="border-2 border-primary text-primary h-16 px-10 text-lg font-bold rounded-2xl">
-                <Link href="#ai-recommender">AI Advisor</Link>
+                <Link href="#services">Our Solutions</Link>
               </Button>
             </div>
             
@@ -72,8 +72,8 @@ export function Hero() {
               />
             </div>
             <div className="absolute -bottom-6 -right-6 bg-accent p-6 rounded-2xl shadow-xl z-20">
-              <p className="text-primary font-black text-2xl">MVP in 48h</p>
-              <p className="text-primary/70 text-xs font-bold uppercase tracking-tighter">Average Deployment</p>
+              <p className="text-primary font-black text-2xl">24/7 Managed</p>
+              <p className="text-primary/70 text-xs font-bold uppercase tracking-tighter">Support Guarantee</p>
             </div>
           </div>
         </div>

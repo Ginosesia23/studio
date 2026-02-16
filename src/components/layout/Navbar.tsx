@@ -22,7 +22,7 @@ export function Navbar() {
   const navLinks = [
     { name: "Solutions", href: "#services" },
     { name: "Custom Apps", href: "#custom-apps" },
-    { name: "AI Advisor", href: "#ai-recommender" },
+    { name: "Managed Support", href: "#support" },
     { name: "About", href: "#about" },
   ];
 

@@ -32,6 +32,12 @@
       "imageHint": "coding workspace"
     },
     {
+      "id": "support-team",
+      "description": "Helpful technical support specialist at a desk",
+      "imageUrl": "https://picsum.photos/seed/elevate-support/800/600",
+      "imageHint": "technical support"
+    },
+    {
       "id": "logo-1",
       "description": "Abstract company logo placeholder 1",
       "imageUrl": "https://picsum.photos/seed/logo1/200/80",
