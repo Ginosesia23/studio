@@ -15,6 +15,10 @@ import { doc, collection } from "firebase/firestore";
 import { setDocumentNonBlocking } from "@/firebase/non-blocking-updates";
 import { useToast } from "@/hooks/use-toast";
 
+// --- CONFIGURATION ---
+// Change this to the email address where you want to receive inquiries.
+const ADMIN_EMAIL = "admin@elevatetech.com";
+
 const formSchema = z.object({
   firstName: z.string().min(2, "First name is required"),
   lastName: z.string().min(2, "Last name is required"),
@@ -49,7 +53,6 @@ export function InquiryForm() {
       const inquiryId = newDocRef.id;
 
       // This structure is designed to work with the "Trigger Email from Firestore" extension.
-      // You can point the extension to the 'inquiries' collection in your Firebase Console.
       const inquiryData = {
         id: inquiryId,
         senderName: `${data.firstName} ${data.lastName}`,
@@ -61,7 +64,7 @@ export function InquiryForm() {
         isRead: false,
         
         // Extension-specific fields:
-        to: "hello@elevatetech.com", // Replace with your actual admin email
+        to: ADMIN_EMAIL,
         message: {
           subject: `New Elevate Tech Inquiry from ${data.firstName} ${data.lastName}`,
           text: `You have a new inquiry!\n\nName: ${data.firstName} ${data.lastName}\nEmail: ${data.email}\nCompany: ${data.company || 'N/A'}\n\nMessage:\n${data.message}`,
@@ -113,7 +116,7 @@ export function InquiryForm() {
                 </div>
                 <div>
                   <h4 className="font-bold text-primary">Email Us</h4>
-                  <p className="text-muted-foreground">hello@elevatetech.com</p>
+                  <p className="text-muted-foreground">{ADMIN_EMAIL}</p>
                 </div>
               </div>
               
