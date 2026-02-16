@@ -3,6 +3,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Hero } from "@/components/sections/Hero";
 import { TrustedCompanies } from "@/components/sections/TrustedCompanies";
 import { Services } from "@/components/sections/Services";
+import { CustomSolutions } from "@/components/sections/CustomSolutions";
 import { AiRecommender } from "@/components/sections/AiRecommender";
 import { AboutUs } from "@/components/sections/AboutUs";
 import { InquiryForm } from "@/components/sections/InquiryForm";
@@ -15,6 +16,7 @@ export default function Home() {
       <Hero />
       <TrustedCompanies />
       <Services />
+      <CustomSolutions />
       <AiRecommender />
       <AboutUs />
       <InquiryForm />

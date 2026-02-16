@@ -26,6 +26,12 @@
       "imageHint": "office minimalist"
     },
     {
+      "id": "custom-apps",
+      "description": "Close up of a programmer working on custom code",
+      "imageUrl": "https://picsum.photos/seed/elevate-custom/800/600",
+      "imageHint": "coding workspace"
+    },
+    {
       "id": "logo-1",
       "description": "Abstract company logo placeholder 1",
       "imageUrl": "https://picsum.photos/seed/logo1/200/80",

@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -20,9 +21,9 @@ export function Navbar() {
 
   const navLinks = [
     { name: "Solutions", href: "#services" },
+    { name: "Custom Apps", href: "#custom-apps" },
     { name: "AI Advisor", href: "#ai-recommender" },
     { name: "About", href: "#about" },
-    { name: "Contact", href: "#contact" },
   ];
 
   return (
