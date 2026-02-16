@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState } from "react";
@@ -10,12 +11,11 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Mail, Phone, MapPin, Send, CheckCircle2, Loader2 } from "lucide-react";
 import { useFirestore } from "@/firebase";
-import { doc, collection } from "firebase/firestore";
+import { doc, collection, serverTimestamp } from "firebase/firestore";
 import { setDocumentNonBlocking } from "@/firebase/non-blocking-updates";
 import { useToast } from "@/hooks/use-toast";
 
 // --- CONFIGURATION ---
-// Change this to the email address where you want to receive inquiries.
 const ADMIN_EMAIL = "ginosesia@seajourney.co.uk";
 
 const formSchema = z.object({
@@ -59,7 +59,7 @@ export function InquiryForm() {
         senderPhone: "", 
         subject: `Inquiry: ${data.company || 'New Lead'}`,
         messageBody: data.message,
-        submissionTimestamp: new Date().toISOString(),
+        submissionTimestamp: serverTimestamp(), // Use serverTimestamp for reliability
         isRead: false,
         
         // Extension-specific fields:
@@ -81,6 +81,7 @@ export function InquiryForm() {
         }
       };
 
+      // Initiate the write to Firestore
       setDocumentNonBlocking(newDocRef, inquiryData, { merge: true });
       
       setIsSubmitted(true);
