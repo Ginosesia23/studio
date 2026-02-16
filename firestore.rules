@@ -1,0 +1,123 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    /**
+     * FIREBASE SECURITY RULES DOCUMENTATION
+     *
+     * Core Philosophy:
+     * This ruleset implements a robust Administrative Access model combined with Public Submission capabilities. 
+     * It prioritizes the security of lead data and internal inquiries while ensuring the public can freely 
+     * view services and submit contact requests without friction.
+     *
+     * Data Structure:
+     * - /services: Publicly viewable catalog of tech services.
+     * - /inquiries: Private collection for contact form submissions.
+     * - /recommendationLeads: Private collection for AI-generated sales leads.
+     * - /roles_admin: A restricted collection used to verify administrative privileges via UID.
+     *
+     * Key Security Decisions:
+     * 1. DBAC (Document-Based Access Control): Administrative rights are granted by checking for the 
+     *    existence of a user's UID within the `/roles_admin` collection.
+     * 2. Anonymous/Public Submissions: To maximize conversion, `inquiries` and `recommendationLeads` 
+     *    allow unauthenticated creation. However, read access is strictly restricted to administrators.
+     * 3. Relational Integrity: On document creation, we enforce that the internal 'id' field matches 
+     *    the Firestore document ID to ensure data consistency.
+     * 4. Structural Segregation: Administrative roles are kept in a separate top-level collection 
+     *    to avoid complex nested rules and improve performance.
+     *
+     * Denormalization for Authorization:
+     * - Roles are managed via a dedicated lookup collection (`/roles_admin/{uid}`) allowing for 
+     *   fast `exists()` checks instead of complex query-based role resolution.
+     */
+
+    // --- Helper Functions ---
+
+    /** Checks if the request is from a signed-in user. */
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    /** 
+     * Checks if the user has an administrative entry in the roles_admin collection. 
+     * This is the primary gate for managing services and viewing leads.
+     */
+    function isAdmin() {
+      return isSignedIn() && exists(/databases/$(database)/documents/roles_admin/$(request.auth.uid));
+    }
+
+    /** Validates that the document being modified exists and the user is an admin. */
+    function isExistingAdmin() {
+      return resource != null && isAdmin();
+    }
+
+    /** Enforces that a specific field in the request data is not being changed. */
+    function isUnchanged(field) {
+      return request.resource.data[field] == resource.data[field];
+    }
+
+    // --- Collection Rules ---
+
+    /**
+     * @description Publicly accessible collection of Elevate Tech services. 
+     * @path /services/{serviceId}
+     * @allow get, list: (public)
+     * @allow create, update, delete: (signed-in admin)
+     * @deny write: (unauthenticated users or non-admin users)
+     * @principle Public Read with Admin-Only Writes.
+     */
+    match /services/{serviceId} {
+      allow get, list: if true;
+      allow create: if isAdmin() && request.resource.data.id == serviceId;
+      allow update: if isExistingAdmin() && isUnchanged('id');
+      allow delete: if isExistingAdmin();
+    }
+
+    /**
+     * @description Collection for potential client inquiries via the contact form.
+     * @path /inquiries/{inquiryId}
+     * @allow create: (public/unauthenticated)
+     * @allow get, list, update, delete: (signed-in admin)
+     * @deny read/list: (public users)
+     * @principle Blind Drop-box pattern: Public can submit, only Admins can view/manage.
+     */
+    match /inquiries/{inquiryId} {
+      // Admins need to read and manage the status of inquiries (e.g., marking as read).
+      allow get, list: if isAdmin();
+      // Anyone can submit an inquiry (even unauthenticated).
+      allow create: if request.resource.data.id == inquiryId;
+      // Only admins can update (e.g., toggle isRead) or delete records.
+      allow update: if isExistingAdmin() && isUnchanged('id');
+      allow delete: if isExistingAdmin();
+    }
+
+    /**
+     * @description Collection capturing leads from the AI recommendation tool.
+     * @path /recommendationLeads/{leadId}
+     * @allow create: (public/unauthenticated)
+     * @allow get, list, update, delete: (signed-in admin)
+     * @deny read/list: (public users)
+     * @principle Secure Lead Management: Ensures potential client data is only visible to staff.
+     */
+    match /recommendationLeads/{leadId} {
+      allow get, list: if isAdmin();
+      // Public submission from the recommendation tool.
+      allow create: if request.resource.data.id == leadId;
+      // Admins/Sales update follow-up status or delete stale leads.
+      allow update: if isExistingAdmin() && isUnchanged('id');
+      allow delete: if isExistingAdmin();
+    }
+
+    /**
+     * @description Internal administrative roles collection.
+     * @path /roles_admin/{uid}
+     * @allow get: (signed-in user checking their own status)
+     * @deny list, create, update, delete: (all users via rules - managed via Admin SDK)
+     * @principle Immutable Admin Registry: Access is typically managed outside of client-side rules.
+     */
+    match /roles_admin/{uid} {
+      allow get: if isSignedIn() && request.auth.uid == uid;
+      allow list, create, update, delete: if false;
+    }
+  }
+}

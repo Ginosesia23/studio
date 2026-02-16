@@ -1,0 +1,216 @@
+{
+  "entities": {
+    "Service": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Service",
+      "type": "object",
+      "description": "Represents a specific hosting or technical support service offered by Elevate Tech, showcasing its features and value proposition.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the Service entity."
+        },
+        "name": {
+          "type": "string",
+          "description": "The official name of the service (e.g., 'Cloud Hosting Standard', '24/7 Premium Technical Support')."
+        },
+        "tagline": {
+          "type": "string",
+          "description": "A concise, catchy phrase summarizing the core benefit or purpose of the service."
+        },
+        "description": {
+          "type": "string",
+          "description": "A comprehensive description of the service, including its functionalities, benefits, and target audience."
+        },
+        "iconUrl": {
+          "type": "string",
+          "description": "The URL to an SVG or image icon representing the service, for UI display.",
+          "format": "uri"
+        },
+        "category": {
+          "type": "string",
+          "description": "The broad category the service belongs to (e.g., 'Hosting Solutions', 'Technical Support')."
+        },
+        "features": {
+          "type": "array",
+          "description": "An array of individual features or key selling points included with this service.",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "tagline",
+        "description",
+        "iconUrl",
+        "category",
+        "features"
+      ]
+    },
+    "Inquiry": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Inquiry",
+      "type": "object",
+      "description": "Stores messages submitted by potential clients through the contact form, enabling Elevate Tech personnel to follow up.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the Inquiry entity."
+        },
+        "senderName": {
+          "type": "string",
+          "description": "The full name of the person submitting the inquiry."
+        },
+        "senderEmail": {
+          "type": "string",
+          "description": "The email address of the sender, used for sending replies and follow-ups.",
+          "format": "email"
+        },
+        "senderPhone": {
+          "type": "string",
+          "description": "An optional phone number provided by the sender for direct contact."
+        },
+        "subject": {
+          "type": "string",
+          "description": "The subject line or brief topic of the client's message."
+        },
+        "messageBody": {
+          "type": "string",
+          "description": "The detailed content of the inquiry message from the client."
+        },
+        "submissionTimestamp": {
+          "type": "string",
+          "description": "The date and time when the inquiry was submitted.",
+          "format": "date-time"
+        },
+        "isRead": {
+          "type": "boolean",
+          "description": "A flag indicating whether the inquiry has been marked as read by Elevate Tech staff."
+        }
+      },
+      "required": [
+        "id",
+        "senderName",
+        "senderEmail",
+        "subject",
+        "messageBody",
+        "submissionTimestamp",
+        "isRead"
+      ]
+    },
+    "RecommendationLead": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "RecommendationLead",
+      "type": "object",
+      "description": "Captures user input and AI-recommended service packages from the service recommendation tool, acting as a lead for the sales team.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the RecommendationLead entity."
+        },
+        "clientName": {
+          "type": "string",
+          "description": "The full name of the potential client who utilized the recommendation tool."
+        },
+        "clientEmail": {
+          "type": "string",
+          "description": "The email address of the potential client, essential for follow-up communications.",
+          "format": "email"
+        },
+        "clientPhone": {
+          "type": "string",
+          "description": "An optional phone number of the potential client for direct contact."
+        },
+        "companyName": {
+          "type": "string",
+          "description": "The name of the client's company, if provided during the recommendation process."
+        },
+        "industry": {
+          "type": "string",
+          "description": "The industry in which the client operates, if provided, to help tailor recommendations."
+        },
+        "currentChallenges": {
+          "type": "string",
+          "description": "A detailed summary of the client's current technical or hosting challenges, derived from their input to the AI tool."
+        },
+        "desiredOutcomes": {
+          "type": "string",
+          "description": "A detailed summary of the client's desired solutions or outcomes, based on their input to the AI tool."
+        },
+        "preferredBudget": {
+          "type": "string",
+          "description": "The client's indicated budget preference for services, if provided (e.g., 'Entry-level', 'Mid-range', 'Custom')."
+        },
+        "recommendedServiceIds": {
+          "type": "array",
+          "description": "References to Service entities that were recommended to the client by the AI tool. (Relationship: Service N:N RecommendationLead)",
+          "items": {
+            "type": "string"
+          }
+        },
+        "submissionTimestamp": {
+          "type": "string",
+          "description": "The date and time when the recommendation request was submitted.",
+          "format": "date-time"
+        },
+        "followUpStatus": {
+          "type": "string",
+          "description": "The current status of the lead's follow-up process (e.g., 'New', 'Contacted', 'Qualified', 'Closed', 'Unreachable')."
+        }
+      },
+      "required": [
+        "id",
+        "clientName",
+        "clientEmail",
+        "currentChallenges",
+        "desiredOutcomes",
+        "recommendedServiceIds",
+        "submissionTimestamp",
+        "followUpStatus"
+      ]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password",
+      "anonymous"
+    ]
+  },
+  "firestore": {
+    "structure": [
+      {
+        "path": "/services",
+        "definition": {
+          "entityName": "Service",
+          "schema": {
+            "$ref": "#/backend/entities/Service"
+          },
+          "description": "Publicly accessible collection of all services offered by Elevate Tech. Accessible for all users to read, intended for display on the landing page. Includes information on features and value propositions."
+        }
+      },
+      {
+        "path": "/inquiries",
+        "definition": {
+          "entityName": "Inquiry",
+          "schema": {
+            "$ref": "#/backend/entities/Inquiry"
+          },
+          "description": "Collection for storing messages submitted by potential clients through the contact form. Documents are created by any user (authenticated or unauthenticated) but are only readable/listable by Elevate Tech administrative staff. A Cloud Function can be triggered on document creation to send an email notification to the company."
+        }
+      },
+      {
+        "path": "/recommendationLeads",
+        "definition": {
+          "entityName": "RecommendationLead",
+          "schema": {
+            "$ref": "#/backend/entities/RecommendationLead"
+          },
+          "description": "Collection for capturing leads generated by the AI-powered service recommendation tool. Documents are created by any user (authenticated or unauthenticated) but are only readable/listable by Elevate Tech administrative/sales staff for follow-up."
+        }
+      }
+    ],
+    "reasoning": "The recommended Firestore structure is designed to be secure, scalable, and highly debuggable, adhering to the core design principles and strategy mandates. For the user's specific request, 'how do i get the for to send the messages to my email', this will primarily involve the `Inquiry` entity. When a user submits a message via the contact form, an `Inquiry` document will be created in the `/inquiries` collection. To fulfill the email sending requirement, a backend process (such as a Cloud Function triggered by an `onCreate` event on `/inquiries/{inquiryId}`) would then read the submitted inquiry data (including `senderEmail`, `subject`, `messageBody`) and send it to the designated company email address. This separation of data storage and email delivery ensures robustness and scalability.\n\n**Authorization Independence (CRITICAL) & QAPs (Rules are not Filters):**\n\n1.  **`/services` Collection:** This collection will store information about the various hosting and technical support services offered. Its primary access pattern is public read-only for all users (authenticated or unauthenticated) to support the 'Service Overview Display' and 'Detailed Service Sections' features. Admin-level write access would be managed by a separate administrator role collection (e.g., `/roles_admin/{uid}`). This structure inherently achieves authorization independence because there are no subcollections with dependent authorization, and the data itself does not rely on parent document attributes for its access rules. QAPs are satisfied as a `list` operation on `/services` is secure because all documents are public by design, meaning rules can simply `allow read: true;`.\n\n2.  **`/inquiries` Collection:** This collection is dedicated to storing messages submitted through the 'Client Inquiry Form'. It adheres to structural segregation, ensuring all documents within this collection have a homogeneous security posture: any user (even unauthenticated) can create a new inquiry, while only authorized administrators can read or list inquiries. Authorization independence is maintained as there are no subcollections or complex data dependencies. Read access for administrators will be based on an `exists()` check against an administrative roles collection, avoiding `get()` calls on the data itself. QAPs are satisfied because a `list` operation on `/inquiries` is secure for administrators, as the collection is strictly for internal lead management, and read access is explicitly restricted to administrators.\n\n3.  **`/recommendationLeads` Collection:** This collection stores the output from the 'AI-Powered Service Recommendation Tool'. Similar to `inquiries`, it follows structural segregation, allowing any user to create a new lead document, but restricting read/list access exclusively to administrators or sales team members. Authorization independence is achieved for the same reasons as the `/inquiries` collection. QAPs are satisfied because `list` operations on `/recommendationLeads` are secure for administrators, given the collection's purpose and restricted read access.\n\n**DBAC (No Custom Claims):** All role-based authorization (e.g., for administrators accessing `inquiries` or `recommendationLeads`) will be based on document existence in dedicated role collections (e.g., `/roles_admin/{uid}`), relying solely on `request.auth.uid` without custom claims.\n\n**Data Clarity and Predictability:** Each entity's path is semantically named, and fields like `submissionTimestamp` and `followUpStatus` explicitly model document state, enhancing predictability and debuggability of rules."
+  }
+}
