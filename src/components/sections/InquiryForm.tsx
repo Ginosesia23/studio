@@ -48,18 +48,37 @@ export function InquiryForm() {
       const newDocRef = doc(inquiriesRef);
       const inquiryId = newDocRef.id;
 
+      // This structure is designed to work with the "Trigger Email from Firestore" extension.
+      // You can point the extension to the 'inquiries' collection in your Firebase Console.
       const inquiryData = {
         id: inquiryId,
         senderName: `${data.firstName} ${data.lastName}`,
         senderEmail: data.email,
-        senderPhone: "", // Optional field in entity
-        subject: `New Inquiry from ${data.company || 'Potential Client'}`,
+        senderPhone: "", 
+        subject: `Inquiry: ${data.company || 'New Lead'}`,
         messageBody: data.message,
         submissionTimestamp: new Date().toISOString(),
         isRead: false,
+        
+        // Extension-specific fields:
+        to: "hello@elevatetech.com", // Replace with your actual admin email
+        message: {
+          subject: `New Elevate Tech Inquiry from ${data.firstName} ${data.lastName}`,
+          text: `You have a new inquiry!\n\nName: ${data.firstName} ${data.lastName}\nEmail: ${data.email}\nCompany: ${data.company || 'N/A'}\n\nMessage:\n${data.message}`,
+          html: `
+            <div style="font-family: sans-serif; padding: 20px; color: #1a1a1a;">
+              <h2 style="color: #29427A;">New Client Inquiry</h2>
+              <p><strong>Name:</strong> ${data.firstName} ${data.lastName}</p>
+              <p><strong>Email:</strong> ${data.email}</p>
+              <p><strong>Company:</strong> ${data.company || 'N/A'}</p>
+              <hr style="border: none; border-top: 1px solid #eee; margin: 20px 0;" />
+              <p><strong>Message:</strong></p>
+              <p style="white-space: pre-wrap;">${data.message}</p>
+            </div>
+          `
+        }
       };
 
-      // Rules require data.id == docId
       setDocumentNonBlocking(newDocRef, inquiryData, { merge: true });
       
       setIsSubmitted(true);
@@ -222,5 +241,3 @@ export function InquiryForm() {
     </section>
   );
 }
-
-    
