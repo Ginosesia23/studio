@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState } from "react";
@@ -17,7 +16,7 @@ import { useToast } from "@/hooks/use-toast";
 
 // --- CONFIGURATION ---
 // Change this to the email address where you want to receive inquiries.
-const ADMIN_EMAIL = "admin@elevatetech.com";
+const ADMIN_EMAIL = "ginosesia@seajourney.co.uk";
 
 const formSchema = z.object({
   firstName: z.string().min(2, "First name is required"),
