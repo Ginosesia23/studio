@@ -2,28 +2,28 @@
 {
   "placeholderImages": [
     {
-      "id": "hero-tech",
-      "description": "Abstract technology background with glowing blue nodes",
-      "imageUrl": "https://picsum.photos/seed/elevate1/1200/800",
-      "imageHint": "technology abstract"
+      "id": "hero-startup",
+      "description": "Clean modern workspace with laptop and code",
+      "imageUrl": "https://picsum.photos/seed/elevate-startup/1200/800",
+      "imageHint": "modern workspace"
     },
     {
-      "id": "server-room",
-      "description": "Modern clean server room datacenter",
-      "imageUrl": "https://picsum.photos/seed/elevate2/800/600",
-      "imageHint": "server datacenter"
+      "id": "tech-stack",
+      "description": "Abstract visualization of cloud data flow",
+      "imageUrl": "https://picsum.photos/seed/elevate-stack/800/600",
+      "imageHint": "cloud data"
     },
     {
-      "id": "team-collaboration",
-      "description": "Tech support team working together",
-      "imageUrl": "https://picsum.photos/seed/elevate3/800/600",
-      "imageHint": "team working"
+      "id": "team-agile",
+      "description": "Agile team collaborating on a launch",
+      "imageUrl": "https://picsum.photos/seed/elevate-agile/800/600",
+      "imageHint": "startup team"
     },
     {
-      "id": "about-mission",
-      "description": "Corporate office interior with modern design",
-      "imageUrl": "https://picsum.photos/seed/elevate4/800/600",
-      "imageHint": "office modern"
+      "id": "about-vision",
+      "description": "Modern minimalist office interior",
+      "imageUrl": "https://picsum.photos/seed/elevate-vision/800/600",
+      "imageHint": "office minimalist"
     }
   ]
 }

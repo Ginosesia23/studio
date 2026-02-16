@@ -1,30 +1,25 @@
+
 'use server';
 /**
- * @fileOverview An AI agent that recommends suitable hosting and technical support packages based on client needs.
- *
- * - recommendServicePackage - A function that handles the service recommendation process.
- * - AiServiceRecommendationInput - The input type for the recommendServicePackage function.
- * - AiServiceRecommendationOutput - The return type for the recommendServicePackage function.
+ * @fileOverview AI advisor for startup tech stacks using Vercel, Supabase, and GitHub.
  */
 
 import { ai } from '@/ai/genkit';
 import { z } from 'genkit';
 
 const AiServiceRecommendationInputSchema = z.object({
-  businessType: z.string().describe('The type of business (e.g., e-commerce, corporate, startup, personal blog).'),
-  currentHosting: z.string().describe('Their current hosting situation (e.g., no hosting, shared hosting, VPS, dedicated server, cloud, custom infrastructure).'),
-  websiteTraffic: z.string().describe('Estimated website traffic (e.g., low, medium, high, very high).'),
-  technicalExpertise: z.string().describe('Internal technical expertise level (e.g., none, basic, intermediate, expert).'),
-  supportPriority: z.string().describe('Priority for technical support (e.g., critical (24/7), high (business hours), moderate, low).'),
-  budgetConsideration: z.string().describe('Budget considerations (e.g., cost-sensitive, moderate, flexible).'),
-  specificRequirements: z.string().optional().describe('Any other specific requirements or preferences.'),
+  businessStage: z.string().describe('The stage of the startup (e.g., MVP, Seed, Growth).'),
+  expectedUsers: z.string().describe('Estimated monthly active users.'),
+  teamSize: z.string().describe('Size of the engineering/technical team.'),
+  primaryGoal: z.string().describe('Main technical goal (e.g., speed to market, massive scalability, data security).'),
+  budget: z.string().describe('Monthly budget for infrastructure.'),
 });
 export type AiServiceRecommendationInput = z.infer<typeof AiServiceRecommendationInputSchema>;
 
 const AiServiceRecommendationOutputSchema = z.object({
-  recommendedPackage: z.string().describe('The recommended hosting and technical support package.'),
-  reasoning: z.string().describe('A detailed explanation for the recommendation, addressing how it meets the client\'s needs.'),
-  suggestedNextSteps: z.string().describe('Clear next steps for the client to learn more or proceed (e.g., "Schedule a free consultation", "View our pricing plans", "Contact our sales team").'),
+  recommendedStack: z.string().describe('The recommended combination of Vercel, Supabase, and GitHub tiers.'),
+  reasoning: z.string().describe('Why this stack is perfect for their current stage.'),
+  suggestedAction: z.string().describe('First step to get started.'),
 });
 export type AiServiceRecommendationOutput = z.infer<typeof AiServiceRecommendationOutputSchema>;
 
@@ -36,24 +31,20 @@ const prompt = ai.definePrompt({
   name: 'aiServiceRecommendationPrompt',
   input: { schema: AiServiceRecommendationInputSchema },
   output: { schema: AiServiceRecommendationOutputSchema },
-  prompt: `You are an expert at recommending hosting and technical support solutions for businesses.
-Your goal is to analyze the client's needs and recommend the single most suitable package from 'Elevate Tech'.
+  prompt: `You are a startup CTO advisor specializing in Vercel, Supabase, and GitHub.
+Your goal is to recommend a "Launch Blueprint" for a new company.
 
-Consider the following hypothetical service packages offered by 'Elevate Tech':
--   **Basic Hosting & Standard Support**: Suitable for small websites, blogs, or startups with low traffic and basic technical needs. Offers shared hosting, email, and standard business-hours support.
--   **Pro Hosting & Enhanced Support**: Ideal for growing businesses, e-commerce sites, or applications with moderate traffic. Offers VPS hosting, advanced security, and extended support hours.
--   **Enterprise Cloud & Premium Support**: Designed for large-scale operations, high-traffic applications, or complex corporate infrastructure. Offers dedicated cloud resources, advanced monitoring, and 24/7 critical technical support.
--   **Custom Solutions & Dedicated Support**: For unique, highly specific, or highly regulated environments. Fully customized infrastructure, dedicated account manager, and on-demand expert support.
+Service Tiers to consider:
+- **Starter Blueprint**: GitHub Free + Vercel Hobby + Supabase Free Tier. Perfect for MVPs and validating ideas.
+- **Growth Blueprint**: GitHub Pro + Vercel Pro + Supabase Pro. Best for Seed-stage startups with active users.
+- **Enterprise Blueprint**: GitHub Enterprise + Vercel Enterprise + Supabase Enterprise. For high-growth companies with strict compliance and massive scale.
 
-Based on the client's details provided below, recommend the single best package and explain your reasoning. Also, provide clear next steps for the client.
-
-Client Business Type: {{{businessType}}}
-Client Current Hosting: {{{currentHosting}}}
-Client Website Traffic: {{{websiteTraffic}}}
-Client Technical Expertise: {{{technicalExpertise}}}
-Client Support Priority: {{{supportPriority}}}
-Client Budget Consideration: {{{budgetConsideration}}}
-{{#if specificRequirements}}Client Specific Requirements: {{{specificRequirements}}}{{/if}}
+Client Details:
+Stage: {{{businessStage}}}
+Users: {{{expectedUsers}}}
+Team Size: {{{teamSize}}}
+Goal: {{{primaryGoal}}}
+Budget: {{{budget}}}
 
 Provide your recommendation in a JSON object strictly following the output schema.`,
 });
