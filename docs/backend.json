@@ -116,39 +116,6 @@
         "to",
         "message"
       ]
-    },
-    "RecommendationLead": {
-      "$schema": "http://json-schema.org/draft-07/schema#",
-      "title": "RecommendationLead",
-      "type": "object",
-      "description": "Captures user input and AI-recommended service packages.",
-      "properties": {
-        "id": { "type": "string" },
-        "clientName": { "type": "string" },
-        "clientEmail": { "type": "string", "format": "email" },
-        "clientPhone": { "type": "string" },
-        "companyName": { "type": "string" },
-        "industry": { "type": "string" },
-        "currentChallenges": { "type": "string" },
-        "desiredOutcomes": { "type": "string" },
-        "preferredBudget": { "type": "string" },
-        "recommendedServiceIds": {
-          "type": "array",
-          "items": { "type": "string" }
-        },
-        "submissionTimestamp": { "type": "string", "format": "date-time" },
-        "followUpStatus": { "type": "string" }
-      },
-      "required": [
-        "id",
-        "clientName",
-        "clientEmail",
-        "currentChallenges",
-        "desiredOutcomes",
-        "recommendedServiceIds",
-        "submissionTimestamp",
-        "followUpStatus"
-      ]
     }
   },
   "auth": {
@@ -170,23 +137,13 @@
         }
       },
       {
-        "path": "/inquiries",
+        "path": "/mail",
         "definition": {
           "entityName": "Inquiry",
           "schema": {
             "$ref": "#/backend/entities/Inquiry"
           },
-          "description": "Inquiries configured for the Trigger Email extension."
-        }
-      },
-      {
-        "path": "/recommendationLeads",
-        "definition": {
-          "entityName": "RecommendationLead",
-          "schema": {
-            "$ref": "#/backend/entities/RecommendationLead"
-          },
-          "description": "Leads from recommendation tool."
+          "description": "Collection monitored by the Trigger Email extension."
         }
       }
     ]

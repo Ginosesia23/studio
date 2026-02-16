@@ -47,41 +47,48 @@ export function InquiryForm() {
     setIsSubmitting(true);
     
     try {
-      const inquiriesRef = collection(firestore, "inquiries");
+      // Using the collection 'mail' which is the default for the Trigger Email extension.
+      const inquiriesRef = collection(firestore, "mail");
       const newDocRef = doc(inquiriesRef);
       const inquiryId = newDocRef.id;
 
-      // This structure is designed to work with the "Trigger Email from Firestore" extension.
+      const subjectLine = `New Elevate Tech Inquiry from ${data.firstName} ${data.lastName}`;
+      const textContent = `You have a new inquiry!\n\nName: ${data.firstName} ${data.lastName}\nEmail: ${data.email}\nCompany: ${data.company || 'N/A'}\n\nMessage:\n${data.message}`;
+      const htmlContent = `
+        <div style="font-family: sans-serif; padding: 20px; color: #1a1a1a;">
+          <h2 style="color: #29427A;">New Client Inquiry</h2>
+          <p><strong>Name:</strong> ${data.firstName} ${data.lastName}</p>
+          <p><strong>Email:</strong> ${data.email}</p>
+          <p><strong>Company:</strong> ${data.company || 'N/A'}</p>
+          <hr style="border: none; border-top: 1px solid #eee; margin: 20px 0;" />
+          <p><strong>Message:</strong></p>
+          <p style="white-space: pre-wrap;">${data.message}</p>
+        </div>
+      `;
+
+      // This structure works with standard extension configs.
       const inquiryData = {
         id: inquiryId,
         senderName: `${data.firstName} ${data.lastName}`,
         senderEmail: data.email,
-        senderPhone: "", 
-        subject: `Inquiry: ${data.company || 'New Lead'}`,
         messageBody: data.message,
-        submissionTimestamp: serverTimestamp(), // Use serverTimestamp for reliability
+        submissionTimestamp: serverTimestamp(),
         isRead: false,
         
-        // Extension-specific fields:
+        // Extension-specific fields (at root for compatibility):
         to: ADMIN_EMAIL,
+        subject: subjectLine,
+        text: textContent,
+        html: htmlContent,
+
+        // Also including as a 'message' object just in case that's how the extension was configured.
         message: {
-          subject: `New Elevate Tech Inquiry from ${data.firstName} ${data.lastName}`,
-          text: `You have a new inquiry!\n\nName: ${data.firstName} ${data.lastName}\nEmail: ${data.email}\nCompany: ${data.company || 'N/A'}\n\nMessage:\n${data.message}`,
-          html: `
-            <div style="font-family: sans-serif; padding: 20px; color: #1a1a1a;">
-              <h2 style="color: #29427A;">New Client Inquiry</h2>
-              <p><strong>Name:</strong> ${data.firstName} ${data.lastName}</p>
-              <p><strong>Email:</strong> ${data.email}</p>
-              <p><strong>Company:</strong> ${data.company || 'N/A'}</p>
-              <hr style="border: none; border-top: 1px solid #eee; margin: 20px 0;" />
-              <p><strong>Message:</strong></p>
-              <p style="white-space: pre-wrap;">${data.message}</p>
-            </div>
-          `
+          subject: subjectLine,
+          text: textContent,
+          html: htmlContent,
         }
       };
 
-      // Initiate the write to Firestore
       setDocumentNonBlocking(newDocRef, inquiryData, { merge: true });
       
       setIsSubmitted(true);
