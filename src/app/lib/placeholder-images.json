@@ -1,0 +1,29 @@
+
+{
+  "placeholderImages": [
+    {
+      "id": "hero-tech",
+      "description": "Abstract technology background with glowing blue nodes",
+      "imageUrl": "https://picsum.photos/seed/elevate1/1200/800",
+      "imageHint": "technology abstract"
+    },
+    {
+      "id": "server-room",
+      "description": "Modern clean server room datacenter",
+      "imageUrl": "https://picsum.photos/seed/elevate2/800/600",
+      "imageHint": "server datacenter"
+    },
+    {
+      "id": "team-collaboration",
+      "description": "Tech support team working together",
+      "imageUrl": "https://picsum.photos/seed/elevate3/800/600",
+      "imageHint": "team working"
+    },
+    {
+      "id": "about-mission",
+      "description": "Corporate office interior with modern design",
+      "imageUrl": "https://picsum.photos/seed/elevate4/800/600",
+      "imageHint": "office modern"
+    }
+  ]
+}
