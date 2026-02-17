@@ -16,7 +16,10 @@ import { setDocumentNonBlocking } from "@/firebase/non-blocking-updates";
 import { useToast } from "@/hooks/use-toast";
 
 // --- CONFIGURATION ---
+// Ensure this matches the recipient you want to test with.
 const ADMIN_EMAIL = "ginosesia@seajourney.co.uk";
+// Ensure this matches the "Email documents collection" setting in your Firebase Extension config.
+const MAIL_COLLECTION = "mail"; 
 
 const formSchema = z.object({
   firstName: z.string().min(2, "First name is required"),
@@ -47,9 +50,8 @@ export function InquiryForm() {
     setIsSubmitting(true);
     
     try {
-      // Using the collection 'mail' which is the default for the Trigger Email extension.
-      const inquiriesRef = collection(firestore, "mail");
-      const newDocRef = doc(inquiriesRef);
+      const mailRef = collection(firestore, MAIL_COLLECTION);
+      const newDocRef = doc(mailRef);
       const inquiryId = newDocRef.id;
 
       const subjectLine = `New Elevate Tech Inquiry from ${data.firstName} ${data.lastName}`;
@@ -66,30 +68,30 @@ export function InquiryForm() {
         </div>
       `;
 
-      // This structure works with standard extension configs.
-      const inquiryData = {
+      // Official Trigger Email Extension Payload Structure
+      const mailPayload = {
+        // Root fields used by the extension
+        to: ADMIN_EMAIL,
+        message: {
+          subject: subjectLine,
+          text: textContent,
+          html: htmlContent,
+        },
+        
+        // Metadata for your own internal tracking and backend.json compliance
         id: inquiryId,
         senderName: `${data.firstName} ${data.lastName}`,
         senderEmail: data.email,
         messageBody: data.message,
         submissionTimestamp: serverTimestamp(),
         isRead: false,
-        
-        // Extension-specific fields (at root for compatibility):
-        to: ADMIN_EMAIL,
+        // Duplicating fields at root as some versions of the extension prefer them there
         subject: subjectLine,
         text: textContent,
         html: htmlContent,
-
-        // Also including as a 'message' object just in case that's how the extension was configured.
-        message: {
-          subject: subjectLine,
-          text: textContent,
-          html: htmlContent,
-        }
       };
 
-      setDocumentNonBlocking(newDocRef, inquiryData, { merge: true });
+      setDocumentNonBlocking(newDocRef, mailPayload, { merge: true });
       
       setIsSubmitted(true);
       reset();
