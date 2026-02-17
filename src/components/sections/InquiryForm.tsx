@@ -10,16 +10,10 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Mail, Phone, MapPin, Send, CheckCircle2, Loader2 } from "lucide-react";
-import { useFirestore } from "@/firebase";
-import { doc, collection, serverTimestamp } from "firebase/firestore";
-import { setDocumentNonBlocking } from "@/firebase/non-blocking-updates";
 import { useToast } from "@/hooks/use-toast";
 
-// --- CONFIGURATION ---
-// Ensure this matches the recipient you want to test with.
-const ADMIN_EMAIL = "ginosesia@seajourney.co.uk";
-// Ensure this matches the "Email documents collection" setting in your Firebase Extension config.
-const MAIL_COLLECTION = "mail"; 
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/xjgernzj";
+const DISPLAY_EMAIL = "ginosesia@seajourney.co.uk";
 
 const formSchema = z.object({
   firstName: z.string().min(2, "First name is required"),
@@ -34,7 +28,6 @@ type FormData = z.infer<typeof formSchema>;
 export function InquiryForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const firestore = useFirestore();
   const { toast } = useToast();
 
   const {
@@ -50,51 +43,22 @@ export function InquiryForm() {
     setIsSubmitting(true);
     
     try {
-      const mailRef = collection(firestore, MAIL_COLLECTION);
-      const newDocRef = doc(mailRef);
-      const inquiryId = newDocRef.id;
-
-      const subjectLine = `New Elevate Tech Inquiry from ${data.firstName} ${data.lastName}`;
-      const textContent = `You have a new inquiry!\n\nName: ${data.firstName} ${data.lastName}\nEmail: ${data.email}\nCompany: ${data.company || 'N/A'}\n\nMessage:\n${data.message}`;
-      const htmlContent = `
-        <div style="font-family: sans-serif; padding: 20px; color: #1a1a1a;">
-          <h2 style="color: #29427A;">New Client Inquiry</h2>
-          <p><strong>Name:</strong> ${data.firstName} ${data.lastName}</p>
-          <p><strong>Email:</strong> ${data.email}</p>
-          <p><strong>Company:</strong> ${data.company || 'N/A'}</p>
-          <hr style="border: none; border-top: 1px solid #eee; margin: 20px 0;" />
-          <p><strong>Message:</strong></p>
-          <p style="white-space: pre-wrap;">${data.message}</p>
-        </div>
-      `;
-
-      // Official Trigger Email Extension Payload Structure
-      const mailPayload = {
-        // Root fields used by the extension
-        to: ADMIN_EMAIL,
-        message: {
-          subject: subjectLine,
-          text: textContent,
-          html: htmlContent,
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
         },
-        
-        // Metadata for your own internal tracking and backend.json compliance
-        id: inquiryId,
-        senderName: `${data.firstName} ${data.lastName}`,
-        senderEmail: data.email,
-        messageBody: data.message,
-        submissionTimestamp: serverTimestamp(),
-        isRead: false,
-        // Duplicating fields at root as some versions of the extension prefer them there
-        subject: subjectLine,
-        text: textContent,
-        html: htmlContent,
-      };
+        body: JSON.stringify(data),
+      });
 
-      setDocumentNonBlocking(newDocRef, mailPayload, { merge: true });
-      
-      setIsSubmitted(true);
-      reset();
+      if (response.ok) {
+        setIsSubmitted(true);
+        reset();
+      } else {
+        const result = await response.json();
+        throw new Error(result.error || "Form submission failed");
+      }
     } catch (error) {
       toast({
         variant: "destructive",
@@ -125,7 +89,7 @@ export function InquiryForm() {
                 </div>
                 <div>
                   <h4 className="font-bold text-primary">Email Us</h4>
-                  <p className="text-muted-foreground">{ADMIN_EMAIL}</p>
+                  <p className="text-muted-foreground">{DISPLAY_EMAIL}</p>
                 </div>
               </div>
               
