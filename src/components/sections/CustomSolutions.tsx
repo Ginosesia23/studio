@@ -1,90 +1,83 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
-import { PlaceHolderImages } from "@/app/lib/placeholder-images";
-import { Code2, Cpu, Smartphone, Blocks, CheckCircle2 } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
+import { Code2, Cpu, Smartphone, Blocks, CheckCircle2, Server, Database, Layers } from "lucide-react";
 
 export function CustomSolutions() {
-  const customImg = PlaceHolderImages.find(img => img.id === "custom-apps");
-
   const solutions = [
     {
-      icon: <Code2 className="w-6 h-6 text-accent" />,
+      icon: <Code2 className="w-8 h-8 text-accent" />,
       title: "Bespoke Portals",
       description: "Custom dashboards and internal tools built specifically for your business logic."
     },
     {
-      icon: <Cpu className="w-6 h-6 text-accent" />,
+      icon: <Cpu className="w-8 h-8 text-accent" />,
       title: "Feature Extensions",
       description: "Need a new workflow? We engineer and integrate custom features into your existing platform."
     },
     {
-      icon: <Smartphone className="w-6 h-6 text-accent" />,
+      icon: <Smartphone className="w-8 h-8 text-accent" />,
       title: "Mobile Optimization",
       description: "Ensuring your custom features and platforms work perfectly on every screen size."
     },
     {
-      icon: <Blocks className="w-6 h-6 text-accent" />,
+      icon: <Blocks className="w-8 h-8 text-accent" />,
       title: "Full-Stack Maintenance",
       description: "We don't just build and leave; we keep your custom code updated and secure."
+    },
+    {
+      icon: <Server className="w-8 h-8 text-accent" />,
+      title: "API Integrations",
+      description: "Seamlessly connect your platform to third-party services and data providers."
+    },
+    {
+      icon: <Database className="w-8 h-8 text-accent" />,
+      title: "Database Engineering",
+      description: "Robust data structures designed for performance and integrity."
     }
   ];
 
   return (
-    <section id="custom-apps" className="py-32 bg-background relative overflow-hidden">
+    <section id="custom-apps" className="py-32 bg-white relative overflow-hidden">
       <div className="container mx-auto px-6">
-        <div className="flex flex-col lg:flex-row items-center gap-20">
-          <div className="flex-1 space-y-8">
-            <div>
-              <h2 className="text-sm font-bold uppercase tracking-widest text-accent mb-4">Custom Feature Development</h2>
-              <h3 className="font-headline text-4xl lg:text-5xl font-bold text-primary mb-6">
-                Solutions Built for Your <span className="text-accent">Unique</span> Business.
-              </h3>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                Off-the-shelf software often misses the mark. We specialize in creating custom 
-                functionality that bridges the gap between your vision and reality.
+        <div className="max-w-4xl mx-auto text-center mb-20">
+          <h2 className="text-sm font-bold uppercase tracking-widest text-accent mb-4">Custom Feature Development</h2>
+          <h3 className="font-headline text-4xl lg:text-6xl font-bold text-primary mb-6">
+            Solutions Built for Your <span className="text-accent">Unique</span> Vision.
+          </h3>
+          <p className="text-xl text-muted-foreground leading-relaxed">
+            Off-the-shelf software often misses the mark. We specialize in creating custom 
+            functionality that bridges the gap between your requirements and reality.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {solutions.map((item, idx) => (
+            <div key={idx} className="p-10 rounded-[2.5rem] bg-background border border-border hover:border-accent/50 transition-all group">
+              <div className="w-16 h-16 bg-primary/5 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-accent/10 transition-colors">
+                {item.icon}
+              </div>
+              <h4 className="font-bold text-2xl text-primary mb-4">{item.title}</h4>
+              <p className="text-muted-foreground leading-relaxed">
+                {item.description}
               </p>
             </div>
+          ))}
+        </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {solutions.map((item, idx) => (
-                <div key={idx} className="space-y-3">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 bg-primary/5 rounded-lg border border-primary/10">
-                      {item.icon}
-                    </div>
-                    <h4 className="font-bold text-primary">{item.title}</h4>
-                  </div>
-                  <p className="text-sm text-muted-foreground">
-                    {item.description}
-                  </p>
-                </div>
-              ))}
+        <div className="mt-20 p-8 rounded-3xl bg-accent/5 border border-accent/20 flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="flex items-center gap-4">
+            <div className="p-3 bg-accent rounded-xl shadow-lg shadow-accent/20">
+              <Layers className="text-primary w-6 h-6" />
             </div>
-
-            <div className="pt-4 border-t border-border">
-              <div className="flex items-center gap-3">
-                <CheckCircle2 className="text-green-500 w-5 h-5" />
-                <span className="font-bold text-primary">Reliable maintenance for every feature we build.</span>
-              </div>
+            <div>
+              <p className="font-bold text-primary text-lg">Continuous Evolution</p>
+              <p className="text-muted-foreground">Every custom feature comes with managed maintenance.</p>
             </div>
           </div>
-
-          <div className="flex-1 relative">
-            <div className="absolute -top-10 -right-10 w-64 h-64 bg-accent/10 rounded-full blur-3xl -z-10" />
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl border-8 border-white">
-              <Image
-                src={customImg?.imageUrl || ""}
-                alt={customImg?.description || "Apex Systems Development"}
-                width={800}
-                height={600}
-                className="object-cover w-full h-full"
-                data-ai-hint={customImg?.imageHint}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent" />
-            </div>
+          <div className="flex items-center gap-3">
+            <CheckCircle2 className="text-green-500 w-6 h-6" />
+            <span className="font-bold text-primary">Reliable long-term support.</span>
           </div>
         </div>
       </div>
