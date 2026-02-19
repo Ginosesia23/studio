@@ -12,7 +12,7 @@ import { Mail, Phone, MapPin, Send, CheckCircle2, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/xjgernzj";
-const ADMIN_EMAIL = "ginosesia@seajourney.co.uk";
+const ADMIN_EMAIL = "contact@apex-systems.co.uk";
 
 const formSchema = z.object({
   firstName: z.string().min(2, "First name is required"),
