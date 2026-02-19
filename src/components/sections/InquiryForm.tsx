@@ -70,119 +70,119 @@ export function InquiryForm() {
   };
 
   return (
-    <section id="contact" className="py-20 bg-white">
+    <section id="contact" className="py-28 bg-white">
       <div className="container mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div>
-            <h2 className="text-xs font-bold uppercase tracking-widest text-accent mb-3">Apex Support</h2>
-            <h3 className="font-headline text-3xl lg:text-4xl font-bold text-primary mb-5">Contact Us</h3>
-            <p className="text-base text-muted-foreground mb-10 max-w-md">
+            <h2 className="text-sm font-bold uppercase tracking-widest text-accent mb-4">Apex Support</h2>
+            <h3 className="font-headline text-3xl lg:text-5xl font-bold text-primary mb-6">Contact Us</h3>
+            <p className="text-lg text-muted-foreground mb-12 max-w-md leading-relaxed">
               Ready to stabilize and scale your infrastructure? Reach out directly 
               to speak with our technical team about your project.
             </p>
             
-            <div className="space-y-6">
-              <div className="flex items-start gap-3">
-                <div className="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center shrink-0">
-                  <Mail className="text-accent w-5 h-5" />
+            <div className="space-y-8">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center shrink-0">
+                  <Mail className="text-accent w-6 h-6" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-sm text-primary">Email Us</h4>
-                  <p className="text-sm text-muted-foreground">{ADMIN_EMAIL}</p>
+                  <h4 className="font-bold text-base text-primary">Email Us</h4>
+                  <p className="text-base text-muted-foreground">{ADMIN_EMAIL}</p>
                 </div>
               </div>
             </div>
           </div>
           
-          <div className="bg-background p-6 lg:p-8 rounded-2xl shadow-lg border">
+          <div className="bg-background p-8 lg:p-12 rounded-[2rem] shadow-2xl border">
             {isSubmitted ? (
-              <div className="h-full py-8 flex flex-col items-center justify-center text-center space-y-4 animate-in fade-in zoom-in">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
-                  <CheckCircle2 className="text-green-600 w-8 h-8" />
+              <div className="h-full py-12 flex flex-col items-center justify-center text-center space-y-6 animate-in fade-in zoom-in">
+                <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center">
+                  <CheckCircle2 className="text-green-600 w-10 h-10" />
                 </div>
-                <div className="space-y-1">
-                  <h4 className="text-xl font-bold text-primary">Inquiry Received</h4>
-                  <p className="text-sm text-muted-foreground">
+                <div className="space-y-2">
+                  <h4 className="text-2xl font-bold text-primary">Inquiry Received</h4>
+                  <p className="text-base text-muted-foreground">
                     An Apex Systems engineer will get back to you within 24 hours.
                   </p>
                 </div>
                 <Button 
                   onClick={() => setIsSubmitted(false)} 
                   variant="outline" 
-                  size="sm"
-                  className="border-primary text-primary font-bold"
+                  size="default"
+                  className="border-primary text-primary font-bold h-12 px-8"
                 >
                   Send Another Message
                 </Button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="space-y-1.5">
-                    <Label htmlFor="firstName" className="text-xs">First Name</Label>
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div className="space-y-2">
+                    <Label htmlFor="firstName" className="text-sm font-bold">First Name</Label>
                     <Input 
                       id="firstName" 
                       placeholder="John" 
-                      className="bg-white h-9 text-sm"
+                      className="bg-white h-12 text-base rounded-xl"
                       {...register("firstName")}
                     />
-                    {errors.firstName && <p className="text-[10px] text-destructive font-medium">{errors.firstName.message}</p>}
+                    {errors.firstName && <p className="text-xs text-destructive font-medium">{errors.firstName.message}</p>}
                   </div>
-                  <div className="space-y-1.5">
-                    <Label htmlFor="lastName" className="text-xs">Last Name</Label>
+                  <div className="space-y-2">
+                    <Label htmlFor="lastName" className="text-sm font-bold">Last Name</Label>
                     <Input 
                       id="lastName" 
                       placeholder="Doe" 
-                      className="bg-white h-9 text-sm"
+                      className="bg-white h-12 text-base rounded-xl"
                       {...register("lastName")}
                     />
-                    {errors.lastName && <p className="text-[10px] text-destructive font-medium">{errors.lastName.message}</p>}
+                    {errors.lastName && <p className="text-xs text-destructive font-medium">{errors.lastName.message}</p>}
                   </div>
                 </div>
                 
-                <div className="space-y-1.5">
-                  <Label htmlFor="email" className="text-xs">Work Email</Label>
+                <div className="space-y-2">
+                  <Label htmlFor="email" className="text-sm font-bold">Work Email</Label>
                   <Input 
                     id="email" 
                     type="email" 
                     placeholder="john@company.com" 
-                    className="bg-white h-9 text-sm"
+                    className="bg-white h-12 text-base rounded-xl"
                     {...register("email")}
                   />
-                  {errors.email && <p className="text-[10px] text-destructive font-medium">{errors.email.message}</p>}
+                  {errors.email && <p className="text-xs text-destructive font-medium">{errors.email.message}</p>}
                 </div>
                 
-                <div className="space-y-1.5">
-                  <Label htmlFor="company" className="text-xs">Company Name</Label>
+                <div className="space-y-2">
+                  <Label htmlFor="company" className="text-sm font-bold">Company Name</Label>
                   <Input 
                     id="company" 
                     placeholder="Acme Inc." 
-                    className="bg-white h-9 text-sm"
+                    className="bg-white h-12 text-base rounded-xl"
                     {...register("company")}
                   />
                 </div>
                 
-                <div className="space-y-1.5">
-                  <Label htmlFor="message" className="text-xs">How can we support you?</Label>
+                <div className="space-y-2">
+                  <Label htmlFor="message" className="text-sm font-bold">How can we support you?</Label>
                   <Textarea 
                     id="message" 
                     placeholder="Tell us about your hosting or development needs..." 
-                    className="min-h-[100px] bg-white text-sm"
+                    className="min-h-[120px] bg-white text-base rounded-xl"
                     {...register("message")}
                   />
-                  {errors.message && <p className="text-[10px] text-destructive font-medium">{errors.message.message}</p>}
+                  {errors.message && <p className="text-xs text-destructive font-medium">{errors.message.message}</p>}
                 </div>
                 
                 <Button 
                   disabled={isSubmitting}
-                  className="w-full bg-accent text-primary hover:bg-accent/90 h-10 font-bold group"
+                  className="w-full bg-accent text-primary hover:bg-accent/90 h-14 text-lg font-bold rounded-xl group"
                 >
                   {isSubmitting ? (
-                    <Loader2 className="animate-spin mr-2 w-4 h-4" />
+                    <Loader2 className="animate-spin mr-2 w-5 h-5" />
                   ) : (
                     <>
                       Send Inquiry
-                      <Send className="ml-2 w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                      <Send className="ml-2 w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                     </>
                   )}
                 </Button>
