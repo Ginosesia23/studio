@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { Database, Github, Layout, ShieldCheck } from "lucide-react";
+import { Database, Github, Layout, ShieldCheck, Rocket } from "lucide-react";
 import { PlaceHolderImages } from "@/app/lib/placeholder-images";
 import Link from "next/link";
 
@@ -18,43 +18,27 @@ export function Hero() {
         <div className="flex flex-col lg:flex-row items-center gap-16">
           <div className="flex-1 text-center lg:text-left">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent/10 text-accent text-sm font-bold mb-8">
-              <ShieldCheck size={16} className="fill-current" />
-              <span className="uppercase tracking-widest">Reliable Hosting & Support</span>
+              <Rocket size={16} className="fill-current" />
+              <span className="uppercase tracking-widest">Build • Maintain • Evolve</span>
             </div>
             
             <h1 className="font-headline text-5xl lg:text-7xl font-black leading-tight text-primary mb-8">
-              Stay Steady. <br />
-              <span className="text-accent">Scale</span> Fast. <br />
-              Grow Better.
+              We Build Your <br />
+              <span className="text-accent">Platform.</span> <br />
+              We Manage the Rest.
             </h1>
             
             <p className="text-xl text-muted-foreground mb-10 max-w-xl mx-auto lg:mx-0 leading-relaxed">
-              We provide the rock-solid foundation for your startup using 
-              <strong> Vercel, Supabase, and GitHub.</strong> Dedicated technical support for growing founders.
+              Helping small companies create high-performance websites and platforms. We handle the <strong>maintenance, updates, and custom features</strong> so you can focus on your business.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start">
               <Button size="lg" asChild className="bg-primary text-white hover:bg-primary/90 font-bold h-16 px-10 text-lg rounded-2xl">
-                <Link href="#contact">Get Technical Support</Link>
+                <Link href="#contact">Start Your Project</Link>
               </Button>
               <Button size="lg" variant="outline" asChild className="border-2 border-primary text-primary h-16 px-10 text-lg font-bold rounded-2xl">
-                <Link href="#services">Explore Solutions</Link>
+                <Link href="#services">Explore Services</Link>
               </Button>
-            </div>
-            
-            <div className="mt-16 flex flex-wrap items-center justify-center lg:justify-start gap-8 opacity-60">
-              <div className="flex items-center gap-2">
-                <Layout size={20} className="text-accent" />
-                <span className="font-bold text-primary">Vercel</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Database size={20} className="text-accent" />
-                <span className="font-bold text-primary">Supabase</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Github size={20} className="text-accent" />
-                <span className="font-bold text-primary">GitHub</span>
-              </div>
             </div>
           </div>
 
@@ -62,7 +46,7 @@ export function Hero() {
             <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
               <Image
                 src={heroImg?.imageUrl || ""}
-                alt={heroImg?.description || "Apex Systems Infrastructure"}
+                alt={heroImg?.description || "Apex Systems Development"}
                 width={800}
                 height={600}
                 className="object-cover w-full aspect-video"
@@ -71,8 +55,8 @@ export function Hero() {
               />
             </div>
             <div className="absolute -bottom-6 -right-6 bg-accent p-6 rounded-2xl shadow-xl z-20">
-              <p className="text-primary font-black text-2xl">Always On</p>
-              <p className="text-primary/70 text-xs font-bold uppercase tracking-tighter">Support Guarantee</p>
+              <p className="text-primary font-black text-2xl">Full Maintenance</p>
+              <p className="text-primary/70 text-xs font-bold uppercase tracking-tighter">Included with every platform</p>
             </div>
           </div>
         </div>

@@ -12,23 +12,23 @@ export function CustomSolutions() {
   const solutions = [
     {
       icon: <Code2 className="w-6 h-6 text-accent" />,
-      title: "Bespoke Frontends",
-      description: "High-performance React and Next.js applications tailored to your specific user workflows."
+      title: "Bespoke Portals",
+      description: "Custom dashboards and internal tools built specifically for your business logic."
     },
     {
       icon: <Cpu className="w-6 h-6 text-accent" />,
-      title: "Robust Backends",
-      description: "Reliable API development and database architecture using Supabase for maximum uptime."
+      title: "Feature Extensions",
+      description: "Need a new workflow? We engineer and integrate custom features into your existing platform."
     },
     {
       icon: <Smartphone className="w-6 h-6 text-accent" />,
       title: "Mobile Optimization",
-      description: "Responsive designs that ensure your custom features work perfectly on any device."
+      description: "Ensuring your custom features and platforms work perfectly on every screen size."
     },
     {
       icon: <Blocks className="w-6 h-6 text-accent" />,
-      title: "Tool Integrations",
-      description: "Connecting your custom app with third-party tools like Stripe or Twilio effortlessly."
+      title: "Full-Stack Maintenance",
+      description: "We don't just build and leave; we keep your custom code updated and secure."
     }
   ];
 
@@ -40,11 +40,11 @@ export function CustomSolutions() {
             <div>
               <h2 className="text-sm font-bold uppercase tracking-widest text-accent mb-4">Custom Feature Development</h2>
               <h3 className="font-headline text-4xl lg:text-5xl font-bold text-primary mb-6">
-                Features Built for Your <span className="text-accent">Specific</span> Challenges.
+                Solutions Built for Your <span className="text-accent">Unique</span> Business.
               </h3>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Generic features often leave gaps in your business logic. We specialize in building custom 
-                functionality that integrates seamlessly into your existing stack.
+                Off-the-shelf software often misses the mark. We specialize in creating custom 
+                functionality that bridges the gap between your vision and reality.
               </p>
             </div>
 
@@ -67,7 +67,7 @@ export function CustomSolutions() {
             <div className="pt-4 border-t border-border">
               <div className="flex items-center gap-3">
                 <CheckCircle2 className="text-green-500 w-5 h-5" />
-                <span className="font-bold text-primary">Scalable code, architected for the long term.</span>
+                <span className="font-bold text-primary">Reliable maintenance for every feature we build.</span>
               </div>
             </div>
           </div>
@@ -77,7 +77,7 @@ export function CustomSolutions() {
             <div className="relative rounded-3xl overflow-hidden shadow-2xl border-8 border-white">
               <Image
                 src={customImg?.imageUrl || ""}
-                alt={customImg?.description || "SteadyNode Custom Development"}
+                alt={customImg?.description || "Apex Systems Development"}
                 width={800}
                 height={600}
                 className="object-cover w-full h-full"
@@ -85,18 +85,6 @@ export function CustomSolutions() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent" />
             </div>
-            
-            <Card className="absolute -bottom-8 -left-8 max-w-[240px] shadow-2xl border-none glass-effect p-1 rounded-2xl hidden md:block">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-2 h-2 rounded-full bg-accent animate-ping" />
-                  <span className="text-xs font-black uppercase tracking-tighter text-primary">Active Dev</span>
-                </div>
-                <p className="text-sm font-bold text-primary">
-                  We bridge the gap between "standard" and "exactly what you need".
-                </p>
-              </CardContent>
-            </Card>
           </div>
         </div>
       </div>

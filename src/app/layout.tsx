@@ -4,8 +4,8 @@ import { FirebaseClientProvider } from '@/firebase/client-provider';
 import { Toaster } from '@/components/ui/toaster';
 
 export const metadata: Metadata = {
-  title: 'Apex Systems | Premium Hosting & Technical Support',
-  description: 'Your dedicated technical partner for robust hosting solutions and expert support for your business ecosystem.',
+  title: 'Apex Systems | Platform Creation & Managed Maintenance',
+  description: 'Helping small businesses build robust websites, maintain digital systems, and engineer custom features for long-term growth.',
 };
 
 export default function RootLayout({
