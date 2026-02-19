@@ -1,11 +1,10 @@
-
 {
   "entities": {
     "Service": {
       "$schema": "http://json-schema.org/draft-07/schema#",
       "title": "Service",
       "type": "object",
-      "description": "Represents a specific hosting or technical support service offered by Elevate Tech, showcasing its features and value proposition.",
+      "description": "Represents a specific hosting or technical support service offered by SteadyNode, showcasing its features and value proposition.",
       "properties": {
         "id": {
           "type": "string",
@@ -13,7 +12,7 @@
         },
         "name": {
           "type": "string",
-          "description": "The official name of the service (e.g., 'Cloud Hosting Standard', '24/7 Premium Technical Support')."
+          "description": "The official name of the service (e.g., 'Cloud Hosting Standard', '24/7 Priority Support')."
         },
         "tagline": {
           "type": "string",
@@ -49,73 +48,6 @@
         "category",
         "features"
       ]
-    },
-    "Inquiry": {
-      "$schema": "http://json-schema.org/draft-07/schema#",
-      "title": "Inquiry",
-      "type": "object",
-      "description": "Stores messages submitted by potential clients through the contact form, compatible with the Trigger Email extension.",
-      "properties": {
-        "id": {
-          "type": "string",
-          "description": "Unique identifier for the Inquiry entity."
-        },
-        "senderName": {
-          "type": "string",
-          "description": "The full name of the person submitting the inquiry."
-        },
-        "senderEmail": {
-          "type": "string",
-          "description": "The email address of the sender.",
-          "format": "email"
-        },
-        "senderPhone": {
-          "type": "string",
-          "description": "Optional phone number."
-        },
-        "subject": {
-          "type": "string",
-          "description": "The subject line of the inquiry."
-        },
-        "messageBody": {
-          "type": "string",
-          "description": "The detailed content of the message."
-        },
-        "submissionTimestamp": {
-          "type": "string",
-          "description": "Timestamp of submission.",
-          "format": "date-time"
-        },
-        "isRead": {
-          "type": "boolean",
-          "description": "Flag for internal management."
-        },
-        "to": {
-          "type": "string",
-          "description": "Target email for the Trigger Email extension.",
-          "format": "email"
-        },
-        "message": {
-          "type": "object",
-          "description": "Email payload for the Trigger Email extension.",
-          "properties": {
-            "subject": { "type": "string" },
-            "text": { "type": "string" },
-            "html": { "type": "string" }
-          }
-        }
-      },
-      "required": [
-        "id",
-        "senderName",
-        "senderEmail",
-        "subject",
-        "messageBody",
-        "submissionTimestamp",
-        "isRead",
-        "to",
-        "message"
-      ]
     }
   },
   "auth": {
@@ -134,16 +66,6 @@
             "$ref": "#/backend/entities/Service"
           },
           "description": "Publicly accessible collection of services."
-        }
-      },
-      {
-        "path": "/mail",
-        "definition": {
-          "entityName": "Inquiry",
-          "schema": {
-            "$ref": "#/backend/entities/Inquiry"
-          },
-          "description": "Collection monitored by the Trigger Email extension."
         }
       }
     ]

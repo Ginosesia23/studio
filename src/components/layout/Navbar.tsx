@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -22,7 +21,7 @@ export function Navbar() {
   const navLinks = [
     { name: "Solutions", href: "#services" },
     { name: "Custom Apps", href: "#custom-apps" },
-    { name: "Managed Support", href: "#support" },
+    { name: "Support", href: "#support" },
     { name: "About", href: "#about" },
   ];
 
@@ -38,8 +37,8 @@ export function Navbar() {
           <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center group-hover:bg-accent group-hover:rotate-6 transition-all shadow-lg shadow-primary/10">
             <ShieldCheck className="text-white w-7 h-7" />
           </div>
-          <span className="font-headline text-2xl font-black tracking-tighter text-primary">
-            ELEVATE<span className="text-accent">TECH</span>
+          <span className="font-headline text-2xl font-black tracking-tighter text-primary uppercase">
+            STEADY<span className="text-accent">NODE</span>
           </span>
         </Link>
 

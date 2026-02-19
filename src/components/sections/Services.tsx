@@ -1,32 +1,31 @@
-
 "use client";
 
 import React from "react";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
-import { Github, Database, Layout, ArrowRight, Shield, Zap } from "lucide-react";
+import { Github, Database, Layout, Zap } from "lucide-react";
 
 export function Services() {
   const stacks = [
     {
-      title: "Frontend & Edge",
+      title: "Frontend Hosting",
       provider: "Vercel",
-      description: "Fast, globally distributed web performance. Deploy your Next.js apps with zero-config and instant CI/CD.",
+      description: "Fast, globally distributed web performance. We manage your Next.js deployments with zero-config and instant CI/CD.",
       icon: <Layout className="w-10 h-10 text-accent" />,
-      features: ["Serverless Functions", "Edge Middleware", "Visual Editing", "Web Analytics"]
+      features: ["Serverless Architecture", "Edge Performance", "Instant Previews", "Web Analytics"]
     },
     {
-      title: "Backend & Data",
+      title: "Backend & Storage",
       provider: "Supabase",
-      description: "The open-source Firebase alternative. Full Postgres database, authentication, and instant API generation.",
+      description: "Robust database and authentication management. We handle your migrations, backups, and API layer.",
       icon: <Database className="w-10 h-10 text-accent" />,
-      features: ["Real-time Database", "Secure Auth", "Edge Functions", "Storage buckets"]
+      features: ["Postgres Management", "Secure Auth", "Real-time Sync", "Storage Buckets"]
     },
     {
-      title: "Workflows & CI/CD",
+      title: "Workflows & Pipelines",
       provider: "GitHub",
-      description: "World-class version control and automated pipelines. We set up your Actions and environment secrets properly.",
+      description: "Reliable version control and automation. We architect your Actions and environment security properly.",
       icon: <Github className="w-10 h-10 text-accent" />,
-      features: ["GitHub Actions", "Protected Branches", "Security Audits", "Environment Config"]
+      features: ["CI/CD Automation", "Security Audits", "Environment Config", "Safe Deployments"]
     }
   ];
 
@@ -34,11 +33,11 @@ export function Services() {
     <section id="services" className="py-32 bg-white">
       <div className="container mx-auto px-6">
         <div className="text-center mb-20 max-w-3xl mx-auto">
-          <h2 className="text-sm font-bold uppercase tracking-widest text-accent mb-4">Our Core Competencies</h2>
-          <h3 className="font-headline text-4xl lg:text-5xl font-bold text-primary mb-6">The Modern Founder's Stack</h3>
+          <h2 className="text-sm font-bold uppercase tracking-widest text-accent mb-4">Core Expertise</h2>
+          <h3 className="font-headline text-4xl lg:text-5xl font-bold text-primary mb-6">The Reliable Startup Stack</h3>
           <p className="text-lg text-muted-foreground leading-relaxed">
-            We don't do "general IT." We specialize in the tools that power the web's most innovative startups. 
-            Simplified, scalable, and secure.
+            We specialize in the tools that power the web's most innovative companies. 
+            Stable, scalable, and managed by experts.
           </p>
         </div>
 

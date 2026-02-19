@@ -4,8 +4,8 @@ import { FirebaseClientProvider } from '@/firebase/client-provider';
 import { Toaster } from '@/components/ui/toaster';
 
 export const metadata: Metadata = {
-  title: 'Elevate Tech | Premium Hosting & Technical Support',
-  description: 'Providing robust hosting solutions and expert technical support for your business ecosystem.',
+  title: 'SteadyNode | Premium Hosting & Technical Support',
+  description: 'Your dedicated technical partner for robust hosting solutions and expert support for your business ecosystem.',
 };
 
 export default function RootLayout({

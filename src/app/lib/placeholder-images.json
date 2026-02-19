@@ -1,70 +1,69 @@
-
 {
   "placeholderImages": [
     {
       "id": "hero-startup",
-      "description": "Clean modern workspace with laptop and code",
-      "imageUrl": "https://picsum.photos/seed/elevate-startup/1200/800",
-      "imageHint": "modern workspace"
+      "description": "Modern server room with blue lighting",
+      "imageUrl": "https://picsum.photos/seed/steadynode-hero/1200/800",
+      "imageHint": "server room"
     },
     {
       "id": "tech-stack",
-      "description": "Abstract visualization of cloud data flow",
-      "imageUrl": "https://picsum.photos/seed/elevate-stack/800/600",
-      "imageHint": "cloud data"
+      "description": "Abstract visualization of a connected node network",
+      "imageUrl": "https://picsum.photos/seed/steadynode-network/800/600",
+      "imageHint": "connected network"
     },
     {
       "id": "team-agile",
-      "description": "Agile team collaborating on a launch",
-      "imageUrl": "https://picsum.photos/seed/elevate-agile/800/600",
-      "imageHint": "startup team"
+      "description": "Technical team discussing infrastructure strategy",
+      "imageUrl": "https://picsum.photos/seed/steadynode-team/800/600",
+      "imageHint": "tech team"
     },
     {
-      "id": "about-vision",
-      "description": "Modern minimalist office interior",
-      "imageUrl": "https://picsum.photos/seed/elevate-vision/800/600",
-      "imageHint": "office minimalist"
+      "id": "about-mission",
+      "description": "Minimalist technical workspace",
+      "imageUrl": "https://picsum.photos/seed/steadynode-about/800/600",
+      "imageHint": "minimal workspace"
     },
     {
       "id": "custom-apps",
-      "description": "Close up of a programmer working on custom code",
-      "imageUrl": "https://picsum.photos/seed/elevate-custom/800/600",
-      "imageHint": "coding workspace"
+      "description": "Close up of high-quality clean code on a screen",
+      "imageUrl": "https://picsum.photos/seed/steadynode-code/800/600",
+      "imageHint": "clean code"
     },
     {
       "id": "support-team",
-      "description": "Helpful technical support specialist at a desk",
-      "imageUrl": "https://picsum.photos/seed/elevate-support/800/600",
-      "imageHint": "technical support"
+      "description": "Professional support engineer at work",
+      "imageUrl": "https://picsum.photos/seed/steadynode-support/800/600",
+      "imageHint": "support engineer"
     },
     {
       "id": "logo-1",
-      "description": "Abstract company logo placeholder 1",
-      "imageUrl": "https://picsum.photos/seed/logo1/200/80",
+      "description": "Partner logo 1",
+      "imageUrl": "https://picsum.photos/seed/node-l1/200/80",
       "imageHint": "abstract logo"
     },
     {
       "id": "logo-2",
-      "description": "Abstract company logo placeholder 2",
-      "imageUrl": "https://picsum.photos/seed/logo2/200/80",
+      "description": "Partner logo 2",
+      "imageUrl": "https://picsum.photos/seed/node-l2/200/80",
       "imageHint": "abstract logo"
     },
     {
       "id": "logo-3",
-      "description": "Abstract company logo placeholder 3",
-      "imageUrl": "https://picsum.photos/seed/logo3/200/80",
+      "description": "Partner logo 3",
+      "imageUrl": "https://picsum.photos/seed/node-l3/200/80",
       "imageHint": "abstract logo"
     },
     {
       "id": "logo-4",
-      "description": "Abstract company logo placeholder 4",
-      "imageUrl": "https://picsum.photos/seed/logo4/200/80",
+      "description": "Partner logo 4",
+      "imageUrl": "https://picsum.photos/seed/node-l4/200/80",
       "imageHint": "abstract logo"
     },
     {
       "id": "logo-5",
-      "description": "Abstract company logo placeholder 5",
-      "imageUrl": "https://picsum.photos/seed/logo5/200/80",
+      "description": "Partner logo 5",
+      "imageUrl": "https://picsum.photos/seed/node-l5/200/80",
       "imageHint": "abstract logo"
     }
   ]

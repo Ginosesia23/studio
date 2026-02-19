@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState } from "react";
@@ -13,7 +12,7 @@ import { Mail, Phone, MapPin, Send, CheckCircle2, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/xjgernzj";
-const DISPLAY_EMAIL = "ginosesia@seajourney.co.uk";
+const ADMIN_EMAIL = "ginosesia@seajourney.co.uk";
 
 const formSchema = z.object({
   firstName: z.string().min(2, "First name is required"),
@@ -75,11 +74,11 @@ export function InquiryForm() {
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           <div>
-            <h2 className="text-sm font-bold uppercase tracking-widest text-accent mb-4">Get In Touch</h2>
-            <h3 className="font-headline text-4xl lg:text-5xl font-bold text-primary mb-6">Let's Discuss Your Project</h3>
+            <h2 className="text-sm font-bold uppercase tracking-widest text-accent mb-4">Steady Support</h2>
+            <h3 className="font-headline text-4xl lg:text-5xl font-bold text-primary mb-6">Talk to a Partner</h3>
             <p className="text-lg text-muted-foreground mb-12">
-              Ready to elevate your infrastructure? Fill out the form below or reach out directly 
-              to speak with our expert consultants.
+              Ready to stabilize and scale your infrastructure? Fill out the form or reach out directly 
+              to speak with our technical team.
             </p>
             
             <div className="space-y-8">
@@ -89,7 +88,7 @@ export function InquiryForm() {
                 </div>
                 <div>
                   <h4 className="font-bold text-primary">Email Us</h4>
-                  <p className="text-muted-foreground">{DISPLAY_EMAIL}</p>
+                  <p className="text-muted-foreground">{ADMIN_EMAIL}</p>
                 </div>
               </div>
               
@@ -108,8 +107,8 @@ export function InquiryForm() {
                   <MapPin className="text-accent w-6 h-6" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-primary">Visit Our Office</h4>
-                  <p className="text-muted-foreground">123 Tech Way, Silicon Valley, CA</p>
+                  <h4 className="font-bold text-primary">Global HQ</h4>
+                  <p className="text-muted-foreground">123 Anchor Way, Tech City</p>
                 </div>
               </div>
             </div>
@@ -122,9 +121,9 @@ export function InquiryForm() {
                   <CheckCircle2 className="text-green-600 w-10 h-10" />
                 </div>
                 <div className="space-y-2">
-                  <h4 className="text-2xl font-bold text-primary">Message Sent!</h4>
+                  <h4 className="text-2xl font-bold text-primary">Inquiry Received</h4>
                   <p className="text-muted-foreground">
-                    Thank you for reaching out. Our team will review your inquiry and get back to you within 24 hours.
+                    A SteadyNode engineer will review your request and get back to you within 24 hours.
                   </p>
                 </div>
                 <Button 
@@ -183,10 +182,10 @@ export function InquiryForm() {
                 </div>
                 
                 <div className="space-y-2">
-                  <Label htmlFor="message">How can we help?</Label>
+                  <Label htmlFor="message">How can we support you?</Label>
                   <Textarea 
                     id="message" 
-                    placeholder="Tell us about your requirements..." 
+                    placeholder="Tell us about your hosting or development needs..." 
                     className="min-h-[120px] bg-white"
                     {...register("message")}
                   />
@@ -201,13 +200,13 @@ export function InquiryForm() {
                     <Loader2 className="animate-spin mr-2 w-4 h-4" />
                   ) : (
                     <>
-                      Send Message
+                      Send Inquiry
                       <Send className="ml-2 w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                     </>
                   )}
                 </Button>
                 <p className="text-xs text-center text-muted-foreground">
-                  By submitting this form, you agree to our privacy policy.
+                  Your data is handled according to our privacy policy.
                 </p>
               </form>
             )}

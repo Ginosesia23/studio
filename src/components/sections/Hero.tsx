@@ -1,10 +1,9 @@
-
 "use client";
 
 import React from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Zap, Database, Github, Layout, ShieldCheck } from "lucide-react";
+import { Database, Github, Layout, ShieldCheck } from "lucide-react";
 import { PlaceHolderImages } from "@/app/lib/placeholder-images";
 import Link from "next/link";
 
@@ -20,17 +19,17 @@ export function Hero() {
           <div className="flex-1 text-center lg:text-left">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent/10 text-accent text-sm font-bold mb-8">
               <ShieldCheck size={16} className="fill-current" />
-              <span className="uppercase tracking-widest">Managed Hosting & Support</span>
+              <span className="uppercase tracking-widest">Reliable Hosting & Support</span>
             </div>
             
             <h1 className="font-headline text-5xl lg:text-7xl font-black leading-tight text-primary mb-8">
-              Host Smarter. <br />
-              <span className="text-accent">Support</span> Faster. <br />
+              Stay Steady. <br />
+              <span className="text-accent">Scale</span> Fast. <br />
               Grow Better.
             </h1>
             
             <p className="text-xl text-muted-foreground mb-10 max-w-xl mx-auto lg:mx-0 leading-relaxed">
-              We specialize in helping small companies build and manage their infrastructure using 
+              We provide the rock-solid foundation for your startup using 
               <strong> Vercel, Supabase, and GitHub.</strong> Dedicated technical support for growing founders.
             </p>
             
@@ -39,7 +38,7 @@ export function Hero() {
                 <Link href="#contact">Get Technical Support</Link>
               </Button>
               <Button size="lg" variant="outline" asChild className="border-2 border-primary text-primary h-16 px-10 text-lg font-bold rounded-2xl">
-                <Link href="#services">Our Solutions</Link>
+                <Link href="#services">Explore Solutions</Link>
               </Button>
             </div>
             
@@ -63,7 +62,7 @@ export function Hero() {
             <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
               <Image
                 src={heroImg?.imageUrl || ""}
-                alt={heroImg?.description || "Startup Tech"}
+                alt={heroImg?.description || "SteadyNode Infrastructure"}
                 width={800}
                 height={600}
                 className="object-cover w-full aspect-video"
@@ -72,7 +71,7 @@ export function Hero() {
               />
             </div>
             <div className="absolute -bottom-6 -right-6 bg-accent p-6 rounded-2xl shadow-xl z-20">
-              <p className="text-primary font-black text-2xl">24/7 Managed</p>
+              <p className="text-primary font-black text-2xl">Always On</p>
               <p className="text-primary/70 text-xs font-bold uppercase tracking-tighter">Support Guarantee</p>
             </div>
           </div>

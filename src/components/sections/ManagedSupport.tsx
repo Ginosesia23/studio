@@ -1,4 +1,3 @@
-
 "use client";
 
 import React from "react";
@@ -14,23 +13,23 @@ export function ManagedSupport() {
   const supportFeatures = [
     {
       icon: <Headphones className="w-6 h-6 text-accent" />,
-      title: "24/7 Priority Support",
-      description: "Direct access to engineers who know your stack inside and out. No tiers, no robots, just experts."
+      title: "24/7 Expert Support",
+      description: "Direct access to senior engineers who know your stack. No bots, no delays, just real help."
     },
     {
       icon: <LifeBuoy className="w-6 h-6 text-accent" />,
       title: "Managed Infrastructure",
-      description: "We handle the Vercel deployments, Supabase migrations, and GitHub workflows so you don't have to."
+      description: "We handle Vercel deployments, Supabase scaling, and GitHub secrets so you can focus on product."
     },
     {
       icon: <Wrench className="w-6 h-6 text-accent" />,
-      title: "Continuous Feature Dev",
-      description: "Need a new button, a new page, or a new integration? Our team builds for you on demand."
+      title: "Continuous Maintenance",
+      description: "Regular updates, security patching, and on-demand feature additions as your business grows."
     },
     {
       icon: <ShieldCheck className="w-6 h-6 text-accent" />,
-      title: "Security & Uptime",
-      description: "Proactive monitoring and security patching to ensure your site is always fast and safe."
+      title: "Uptime & Reliability",
+      description: "Proactive monitoring and automated health checks to ensure your business stays online."
     }
   ];
 
@@ -48,7 +47,7 @@ export function ManagedSupport() {
               <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl border-4 border-white/10 aspect-square">
                 <Image
                   src={supportImg?.imageUrl || ""}
-                  alt={supportImg?.description || "Technical Support Team"}
+                  alt={supportImg?.description || "SteadyNode Support Team"}
                   fill
                   className="object-cover"
                   data-ai-hint={supportImg?.imageHint}
@@ -60,7 +59,7 @@ export function ManagedSupport() {
                   <span className="text-primary font-black uppercase tracking-widest text-sm">Response Time</span>
                 </div>
                 <p className="text-primary text-4xl font-black">&lt; 15m</p>
-                <p className="text-primary/60 text-xs font-bold">Average for priority clients</p>
+                <p className="text-primary/60 text-xs font-bold">Average for priority partners</p>
               </div>
             </div>
           </div>
@@ -69,15 +68,15 @@ export function ManagedSupport() {
             <div>
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent/20 text-accent text-sm font-bold mb-6">
                 <MessageSquare size={16} />
-                <span className="uppercase tracking-widest">Peace of Mind as a Service</span>
+                <span className="uppercase tracking-widest">Your Technical Anchor</span>
               </div>
               <h2 className="font-headline text-4xl lg:text-6xl font-black leading-tight mb-6 text-white">
-                We're Your <span className="text-accent">Extended</span> Technical Team.
+                Expertise <span className="text-accent">Exactly</span> When You Need It.
               </h2>
               <p className="text-xl text-blue-100/70 leading-relaxed">
-                Most companies leave you with a login and a manual. We provide a partnership. 
-                Whether it's hosting support or building new features, we bridge the gap between 
-                launching and thriving.
+                We aren't just a service provider; we are your extended technical team. 
+                Whether it's managing your production environment or building new customer-facing 
+                features, we provide the stability you need to move fast.
               </p>
             </div>
 

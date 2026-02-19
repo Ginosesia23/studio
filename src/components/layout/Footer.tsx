@@ -16,12 +16,12 @@ export function Footer() {
               <div className="w-14 h-14 bg-accent rounded-2xl flex items-center justify-center shadow-xl shadow-accent/20">
                 <ShieldCheck className="text-primary w-8 h-8" />
               </div>
-              <span className="font-headline text-3xl font-black tracking-tighter">
-                ELEVATE<span className="text-accent">TECH</span>
+              <span className="font-headline text-3xl font-black tracking-tighter uppercase">
+                STEADY<span className="text-accent">NODE</span>
               </span>
             </Link>
             <p className="text-xl text-blue-100/60 leading-relaxed max-w-md font-medium">
-              We engineer robust infrastructure and provide world-class technical support to power your entire company ecosystem. Your growth is our primary mission.
+              We engineer stable infrastructure and provide reliable technical support to anchor your entire business ecosystem.
             </p>
             <div className="flex gap-5">
               {[Twitter, Linkedin, Github].map((Icon, idx) => (
@@ -36,9 +36,9 @@ export function Footer() {
             <h4 className="font-headline font-bold text-xl mb-8 tracking-tight">Solutions</h4>
             <ul className="space-y-5 text-lg font-medium text-blue-100/40">
               <li><Link href="#services" className="hover:text-accent transition-colors flex items-center gap-2">Cloud Hosting <ExternalLink size={14} /></Link></li>
-              <li><Link href="#services" className="hover:text-accent transition-colors flex items-center gap-2">VPS Infrastructure <ExternalLink size={14} /></Link></li>
-              <li><Link href="#services" className="hover:text-accent transition-colors flex items-center gap-2">Dedicated Core <ExternalLink size={14} /></Link></li>
-              <li><Link href="#services" className="hover:text-accent transition-colors flex items-center gap-2">Managed Security <ExternalLink size={14} /></Link></li>
+              <li><Link href="#services" className="hover:text-accent transition-colors flex items-center gap-2">Infrastructure <ExternalLink size={14} /></Link></li>
+              <li><Link href="#services" className="hover:text-accent transition-colors flex items-center gap-2">Custom Dev <ExternalLink size={14} /></Link></li>
+              <li><Link href="#services" className="hover:text-accent transition-colors flex items-center gap-2">Security <ExternalLink size={14} /></Link></li>
             </ul>
           </div>
           
@@ -55,7 +55,7 @@ export function Footer() {
           <div className="lg:col-span-3">
             <h4 className="font-headline font-bold text-xl mb-8 tracking-tight">Company</h4>
             <ul className="space-y-5 text-lg font-medium text-blue-100/40">
-              <li><Link href="#about" className="hover:text-accent transition-colors">Our Vision</Link></li>
+              <li><Link href="#about" className="hover:text-accent transition-colors">Our Mission</Link></li>
               <li><Link href="#" className="hover:text-accent transition-colors">Global Network</Link></li>
               <li><Link href="#" className="hover:text-accent transition-colors">Privacy Policy</Link></li>
               <li><Link href="#" className="hover:text-accent transition-colors">Terms of Service</Link></li>
@@ -65,12 +65,12 @@ export function Footer() {
         
         <div className="pt-12 border-t border-white/10 flex flex-col lg:flex-row justify-between items-center gap-10">
           <p className="text-base font-bold text-blue-100/20 uppercase tracking-widest">
-            © {new Date().getFullYear()} Elevate Tech Solutions Group.
+            © {new Date().getFullYear()} SteadyNode Systems Group.
           </p>
           <div className="flex gap-10 items-center">
              <div className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                <span className="text-sm font-bold text-blue-100/40 uppercase tracking-tighter">Global Systems: Optimal</span>
+                <span className="text-sm font-bold text-blue-100/40 uppercase tracking-tighter">System Status: Optimal</span>
              </div>
           </div>
         </div>

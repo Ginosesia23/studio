@@ -1,4 +1,3 @@
-
 "use client";
 
 import React from "react";
@@ -14,22 +13,22 @@ export function CustomSolutions() {
     {
       icon: <Code2 className="w-6 h-6 text-accent" />,
       title: "Bespoke Frontends",
-      description: "High-performance React and Next.js applications tailored to your specific brand and user workflows."
+      description: "High-performance React and Next.js applications tailored to your specific user workflows."
     },
     {
       icon: <Cpu className="w-6 h-6 text-accent" />,
-      title: "Scalable Backends",
-      description: "Custom API development and database architecture using Supabase and Postgres for reliability."
+      title: "Robust Backends",
+      description: "Reliable API development and database architecture using Supabase for maximum uptime."
     },
     {
       icon: <Smartphone className="w-6 h-6 text-accent" />,
       title: "Mobile Optimization",
-      description: "Responsive designs that ensure your custom features work perfectly on any device, anywhere."
+      description: "Responsive designs that ensure your custom features work perfectly on any device."
     },
     {
       icon: <Blocks className="w-6 h-6 text-accent" />,
-      title: "Seamless Integrations",
-      description: "Connecting your custom app with third-party tools like Stripe, Twilio, or SendGrid effortlessly."
+      title: "Tool Integrations",
+      description: "Connecting your custom app with third-party tools like Stripe or Twilio effortlessly."
     }
   ];
 
@@ -39,14 +38,13 @@ export function CustomSolutions() {
         <div className="flex flex-col lg:flex-row items-center gap-20">
           <div className="flex-1 space-y-8">
             <div>
-              <h2 className="text-sm font-bold uppercase tracking-widest text-accent mb-4">Bespoke Development</h2>
+              <h2 className="text-sm font-bold uppercase tracking-widest text-accent mb-4">Custom Feature Development</h2>
               <h3 className="font-headline text-4xl lg:text-5xl font-bold text-primary mb-6">
-                Apps Built for Your <span className="text-accent">Specific</span> Needs.
+                Features Built for Your <span className="text-accent">Specific</span> Challenges.
               </h3>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Generic solutions often leave gaps in your workflow. We specialize in building custom 
-                frontend and backend applications that are engineered specifically for your 
-                business challenges.
+                Generic features often leave gaps in your business logic. We specialize in building custom 
+                functionality that integrates seamlessly into your existing stack.
               </p>
             </div>
 
@@ -69,7 +67,7 @@ export function CustomSolutions() {
             <div className="pt-4 border-t border-border">
               <div className="flex items-center gap-3">
                 <CheckCircle2 className="text-green-500 w-5 h-5" />
-                <span className="font-bold text-primary">Tailored features, no bloated code.</span>
+                <span className="font-bold text-primary">Scalable code, architected for the long term.</span>
               </div>
             </div>
           </div>
@@ -79,7 +77,7 @@ export function CustomSolutions() {
             <div className="relative rounded-3xl overflow-hidden shadow-2xl border-8 border-white">
               <Image
                 src={customImg?.imageUrl || ""}
-                alt={customImg?.description || "Custom Development"}
+                alt={customImg?.description || "SteadyNode Custom Development"}
                 width={800}
                 height={600}
                 className="object-cover w-full h-full"
@@ -88,15 +86,14 @@ export function CustomSolutions() {
               <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent" />
             </div>
             
-            {/* Floating feature card */}
             <Card className="absolute -bottom-8 -left-8 max-w-[240px] shadow-2xl border-none glass-effect p-1 rounded-2xl hidden md:block">
               <CardContent className="p-6">
                 <div className="flex items-center gap-3 mb-3">
                   <div className="w-2 h-2 rounded-full bg-accent animate-ping" />
-                  <span className="text-xs font-black uppercase tracking-tighter text-primary">Live Now</span>
+                  <span className="text-xs font-black uppercase tracking-tighter text-primary">Active Dev</span>
                 </div>
                 <p className="text-sm font-bold text-primary">
-                  We bridge the gap between "Ready-to-use" and "Ready-for-you".
+                  We bridge the gap between "standard" and "exactly what you need".
                 </p>
               </CardContent>
             </Card>
