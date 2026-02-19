@@ -4,8 +4,8 @@
 
 @layer base {
   :root {
-    /* Deep Dark Navy: #021123 */
-    --primary: 213 89% 7%;
+    /* Refined Navy Blue: #0d294b */
+    --primary: 213 70% 17%;
     --primary-foreground: 210 40% 98%;
 
     /* Vibrant Cyan: #24C5DB */
@@ -28,7 +28,7 @@
     --destructive-foreground: 210 40% 98%;
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 213 89% 7%;
+    --ring: 213 70% 17%;
     --radius: 0.75rem;
   }
 }
