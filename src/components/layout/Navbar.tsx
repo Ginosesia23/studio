@@ -35,7 +35,7 @@ export function Navbar() {
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2.5 group">
-          <ApexLogo className="text-primary w-9 h-9 group-hover:text-accent transition-colors" />
+          <ApexLogo className="text-primary w-9 h-9 transition-colors group-hover:text-accent" />
           <span className="font-headline text-xl font-black tracking-tighter text-primary uppercase">
             APEX<span className="text-accent">SYSTEMS</span>
           </span>

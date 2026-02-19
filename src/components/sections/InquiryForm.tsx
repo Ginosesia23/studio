@@ -88,7 +88,7 @@ export function InquiryForm() {
                 </div>
                 <div>
                   <h4 className="font-bold text-base text-primary">Email Us</h4>
-                  <p className="text-base text-muted-foreground">{ADMIN_EMAIL}</p>
+                  <p className="text-base text-muted-foreground font-medium">{ADMIN_EMAIL}</p>
                 </div>
               </div>
             </div>

@@ -76,7 +76,7 @@ export function ManagedSupport() {
           ))}
         </div>
 
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-10 p-10 rounded-2xl border border-accent/30 bg-white/5 backdrop-blur-sm text-white">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-10 p-10 rounded-xl border border-accent/30 bg-transparent backdrop-blur-sm text-white">
           <div className="space-y-2">
             <h4 className="text-3xl font-black">Ready for a Technical Partner?</h4>
             <p className="font-bold text-base text-blue-100/60">Stop worrying about bugs and start focusing on growth.</p>
