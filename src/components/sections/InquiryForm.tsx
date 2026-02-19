@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, Phone, MapPin, Send, CheckCircle2, Loader2 } from "lucide-react";
+import { Mail, Send, CheckCircle2, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/xjgernzj";
@@ -75,10 +75,10 @@ export function InquiryForm() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           <div>
             <h2 className="text-sm font-bold uppercase tracking-widest text-accent mb-4">Apex Support</h2>
-            <h3 className="font-headline text-4xl lg:text-5xl font-bold text-primary mb-6">Talk to a Partner</h3>
+            <h3 className="font-headline text-4xl lg:text-5xl font-bold text-primary mb-6">Contact Us</h3>
             <p className="text-lg text-muted-foreground mb-12">
               Ready to stabilize and scale your infrastructure? Fill out the form or reach out directly 
-              to speak with our technical team.
+              to speak with our technical team about your project.
             </p>
             
             <div className="space-y-8">
@@ -89,26 +89,6 @@ export function InquiryForm() {
                 <div>
                   <h4 className="font-bold text-primary">Email Us</h4>
                   <p className="text-muted-foreground">{ADMIN_EMAIL}</p>
-                </div>
-              </div>
-              
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center shrink-0">
-                  <Phone className="text-accent w-6 h-6" />
-                </div>
-                <div>
-                  <h4 className="font-bold text-primary">Call Us</h4>
-                  <p className="text-muted-foreground">+1 (555) 123-4567</p>
-                </div>
-              </div>
-              
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center shrink-0">
-                  <MapPin className="text-accent w-6 h-6" />
-                </div>
-                <div>
-                  <h4 className="font-bold text-primary">Global HQ</h4>
-                  <p className="text-muted-foreground">123 Anchor Way, Tech City</p>
                 </div>
               </div>
             </div>
