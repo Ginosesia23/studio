@@ -62,7 +62,7 @@ export function Hero() {
             <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
               <Image
                 src={heroImg?.imageUrl || ""}
-                alt={heroImg?.description || "SteadyNode Infrastructure"}
+                alt={heroImg?.description || "Apex Systems Infrastructure"}
                 width={800}
                 height={600}
                 className="object-cover w-full aspect-video"

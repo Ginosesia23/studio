@@ -4,7 +4,7 @@
       "$schema": "http://json-schema.org/draft-07/schema#",
       "title": "Service",
       "type": "object",
-      "description": "Represents a specific hosting or technical support service offered by SteadyNode, showcasing its features and value proposition.",
+      "description": "Represents a specific hosting or technical support service offered by Apex Systems, showcasing its features and value proposition.",
       "properties": {
         "id": {
           "type": "string",

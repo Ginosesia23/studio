@@ -17,7 +17,7 @@ export function Footer() {
                 <ShieldCheck className="text-primary w-8 h-8" />
               </div>
               <span className="font-headline text-3xl font-black tracking-tighter uppercase">
-                STEADY<span className="text-accent">NODE</span>
+                APEX<span className="text-accent">SYSTEMS</span>
               </span>
             </Link>
             <p className="text-xl text-blue-100/60 leading-relaxed max-w-md font-medium">
@@ -65,7 +65,7 @@ export function Footer() {
         
         <div className="pt-12 border-t border-white/10 flex flex-col lg:flex-row justify-between items-center gap-10">
           <p className="text-base font-bold text-blue-100/20 uppercase tracking-widest">
-            © {new Date().getFullYear()} SteadyNode Systems Group.
+            © {new Date().getFullYear()} Apex Systems Group.
           </p>
           <div className="flex gap-10 items-center">
              <div className="flex items-center gap-2">

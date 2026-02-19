@@ -18,7 +18,7 @@ export function AboutUs() {
               <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-primary/10 rounded-full blur-2xl" />
               <Image
                 src={aboutImg?.imageUrl || ""}
-                alt={aboutImg?.description || "About SteadyNode"}
+                alt={aboutImg?.description || "About Apex Systems"}
                 width={600}
                 height={600}
                 className="rounded-2xl shadow-xl relative z-10"
@@ -35,7 +35,7 @@ export function AboutUs() {
             <h2 className="text-sm font-bold uppercase tracking-widest text-accent mb-4">Our Mission</h2>
             <h3 className="font-headline text-4xl lg:text-5xl font-bold text-primary mb-6">Built to Anchor Your Growth</h3>
             <p className="text-lg text-muted-foreground mb-6">
-              SteadyNode was founded with a singular mission: to provide the most reliable infrastructure 
+              Apex Systems was founded with a singular mission: to provide the most reliable infrastructure 
               and technical support for modern business ecosystems. We understand that in today's digital 
               landscape, stability is the absolute foundation of innovation.
             </p>

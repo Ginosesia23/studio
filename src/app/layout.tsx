@@ -4,7 +4,7 @@ import { FirebaseClientProvider } from '@/firebase/client-provider';
 import { Toaster } from '@/components/ui/toaster';
 
 export const metadata: Metadata = {
-  title: 'SteadyNode | Premium Hosting & Technical Support',
+  title: 'Apex Systems | Premium Hosting & Technical Support',
   description: 'Your dedicated technical partner for robust hosting solutions and expert support for your business ecosystem.',
 };
 

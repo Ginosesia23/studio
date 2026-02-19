@@ -1,4 +1,3 @@
-
 'use server';
 /**
  * @fileOverview AI advisor for startup tech stacks using Vercel, Supabase, and GitHub.
@@ -31,7 +30,7 @@ const prompt = ai.definePrompt({
   name: 'aiServiceRecommendationPrompt',
   input: { schema: AiServiceRecommendationInputSchema },
   output: { schema: AiServiceRecommendationOutputSchema },
-  prompt: `You are a startup CTO advisor specializing in Vercel, Supabase, and GitHub.
+  prompt: `You are a startup CTO advisor for Apex Systems specializing in Vercel, Supabase, and GitHub.
 Your goal is to recommend a "Launch Blueprint" for a new company.
 
 Service Tiers to consider:

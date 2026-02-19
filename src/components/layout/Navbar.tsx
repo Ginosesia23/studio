@@ -38,7 +38,7 @@ export function Navbar() {
             <ShieldCheck className="text-white w-7 h-7" />
           </div>
           <span className="font-headline text-2xl font-black tracking-tighter text-primary uppercase">
-            STEADY<span className="text-accent">NODE</span>
+            APEX<span className="text-accent">SYSTEMS</span>
           </span>
         </Link>
 

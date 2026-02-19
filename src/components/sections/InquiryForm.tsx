@@ -74,7 +74,7 @@ export function InquiryForm() {
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           <div>
-            <h2 className="text-sm font-bold uppercase tracking-widest text-accent mb-4">Steady Support</h2>
+            <h2 className="text-sm font-bold uppercase tracking-widest text-accent mb-4">Apex Support</h2>
             <h3 className="font-headline text-4xl lg:text-5xl font-bold text-primary mb-6">Talk to a Partner</h3>
             <p className="text-lg text-muted-foreground mb-12">
               Ready to stabilize and scale your infrastructure? Fill out the form or reach out directly 
@@ -123,7 +123,7 @@ export function InquiryForm() {
                 <div className="space-y-2">
                   <h4 className="text-2xl font-bold text-primary">Inquiry Received</h4>
                   <p className="text-muted-foreground">
-                    A SteadyNode engineer will review your request and get back to you within 24 hours.
+                    An Apex Systems engineer will review your request and get back to you within 24 hours.
                   </p>
                 </div>
                 <Button 
