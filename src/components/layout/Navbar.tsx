@@ -30,38 +30,61 @@ export function Navbar() {
     <nav
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-500 px-6 lg:px-12",
-        isScrolled ? "py-3 glass-effect shadow-lg mt-0" : "py-6 bg-transparent"
+        isScrolled ? "py-3 bg-white/95 backdrop-blur-md shadow-lg border-b" : "py-8 bg-transparent"
       )}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2.5 group">
-          <ApexLogo className="text-primary w-9 h-9 transition-colors group-hover:text-accent" />
-          <span className="font-headline text-xl font-black tracking-tighter text-primary uppercase">
+          <ApexLogo 
+            className={cn(
+              "w-9 h-9 transition-colors",
+              isScrolled ? "text-primary" : "text-accent"
+            )} 
+          />
+          <span className={cn(
+            "font-headline text-xl font-black tracking-tighter uppercase transition-colors",
+            isScrolled ? "text-primary" : "text-white"
+          )}>
             APEX<span className="text-accent">SYSTEMS</span>
           </span>
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden lg:flex items-center gap-8">
-          <div className="flex items-center gap-6">
+        <div className="hidden lg:flex items-center gap-10">
+          <div className="flex items-center gap-8">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
-                className="text-[11px] font-bold tracking-widest uppercase text-primary/70 hover:text-accent transition-colors"
+                className={cn(
+                  "text-[11px] font-black tracking-widest uppercase transition-colors",
+                  isScrolled ? "text-primary/70 hover:text-accent" : "text-white/70 hover:text-accent"
+                )}
               >
                 {link.name}
               </Link>
             ))}
           </div>
-          <Button asChild size="sm" className="bg-primary hover:bg-primary/90 text-white font-bold h-10 px-6 rounded-lg shadow-md shadow-primary/10">
+          <Button 
+            asChild 
+            size="sm" 
+            className={cn(
+              "font-bold h-10 px-6 rounded-lg transition-all",
+              isScrolled 
+                ? "bg-primary text-white hover:bg-primary/90" 
+                : "bg-accent text-primary hover:bg-accent/90"
+            )}
+          >
             <Link href="#contact">Consultation</Link>
           </Button>
         </div>
 
         {/* Mobile Toggle */}
         <button
-          className="lg:hidden text-primary p-1.5"
+          className={cn(
+            "lg:hidden p-1.5 transition-colors",
+            isScrolled ? "text-primary" : "text-white"
+          )}
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
