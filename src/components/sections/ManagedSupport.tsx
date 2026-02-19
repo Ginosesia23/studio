@@ -76,12 +76,12 @@ export function ManagedSupport() {
           ))}
         </div>
 
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-10 p-10 rounded-[2.5rem] bg-accent text-primary">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-10 p-10 rounded-2xl border border-accent/30 bg-white/5 backdrop-blur-sm text-white">
           <div className="space-y-2">
             <h4 className="text-3xl font-black">Ready for a Technical Partner?</h4>
-            <p className="font-bold text-base opacity-80">Stop worrying about bugs and start focusing on growth.</p>
+            <p className="font-bold text-base text-blue-100/60">Stop worrying about bugs and start focusing on growth.</p>
           </div>
-          <Button asChild size="lg" className="bg-primary text-white hover:bg-primary/90 font-bold h-14 px-10 rounded-2xl text-lg shadow-lg shadow-primary/20">
+          <Button asChild size="lg" className="bg-accent text-primary hover:bg-accent/90 font-bold h-14 px-10 rounded-xl text-lg shadow-lg shadow-accent/10">
             <Link href="#contact" className="flex items-center gap-2">
               Get Started Now <ArrowRight className="w-5 h-5" />
             </Link>
