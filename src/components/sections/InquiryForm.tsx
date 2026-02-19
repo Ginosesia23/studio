@@ -175,7 +175,7 @@ export function InquiryForm() {
                 
                 <Button 
                   disabled={isSubmitting}
-                  className="w-full bg-accent text-primary hover:bg-accent/90 h-14 text-lg font-bold rounded-xl group"
+                  className="w-full bg-primary text-white hover:bg-primary/90 h-14 text-lg font-bold rounded-xl group"
                 >
                   {isSubmitting ? (
                     <Loader2 className="animate-spin mr-2 w-5 h-5" />
