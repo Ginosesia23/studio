@@ -3,8 +3,9 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Menu, X, ShieldCheck } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { ApexLogo } from "@/components/ui/apex-logo";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -34,8 +35,8 @@ export function Navbar() {
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2.5 group">
-          <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center group-hover:bg-accent group-hover:rotate-6 transition-all shadow-md shadow-primary/5">
-            <ShieldCheck className="text-white w-6 h-6" />
+          <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center group-hover:bg-accent transition-all shadow-md shadow-primary/5">
+            <ApexLogo className="text-white w-7 h-7" />
           </div>
           <span className="font-headline text-xl font-black tracking-tighter text-primary uppercase">
             APEX<span className="text-accent">SYSTEMS</span>

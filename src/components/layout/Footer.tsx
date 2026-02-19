@@ -2,7 +2,8 @@
 
 import React from "react";
 import Link from "next/link";
-import { ShieldCheck, Twitter, Linkedin, Github, ExternalLink } from "lucide-react";
+import { Twitter, Linkedin, Github, ExternalLink } from "lucide-react";
+import { ApexLogo } from "@/components/ui/apex-logo";
 
 export function Footer() {
   return (
@@ -14,7 +15,7 @@ export function Footer() {
           <div className="lg:col-span-5 space-y-6">
             <Link href="/" className="flex items-center gap-2.5">
               <div className="w-10 h-10 bg-accent rounded-lg flex items-center justify-center shadow-lg shadow-accent/10">
-                <ShieldCheck className="text-primary w-6 h-6" />
+                <ApexLogo className="text-primary w-7 h-7" />
               </div>
               <span className="font-headline text-2xl font-black tracking-tighter uppercase">
                 APEX<span className="text-accent">SYSTEMS</span>
