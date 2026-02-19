@@ -37,16 +37,16 @@ export function Hero() {
             </Button>
           </div>
 
-          <div className="mt-20 grid grid-cols-1 sm:grid-cols-3 gap-6 text-left animate-fade-up animate-delay-300">
+          <div className="mt-20 grid grid-cols-1 sm:grid-cols-3 gap-8 text-left animate-fade-up animate-delay-300">
             {[
-              { icon: <Code2 className="w-6 h-6 text-accent" />, title: "Custom Dev", desc: "Bespoke features built for your logic." },
-              { icon: <Settings className="w-6 h-6 text-accent" />, title: "Full Maintenance", desc: "We manage every update and patch." },
-              { icon: <Puzzle className="w-6 h-6 text-accent" />, title: "Scalable Apps", desc: "Built to grow with your user base." }
+              { icon: <Code2 className="w-8 h-8 text-accent" />, title: "Custom Dev", desc: "Bespoke features built for your logic." },
+              { icon: <Settings className="w-8 h-8 text-accent" />, title: "Full Maintenance", desc: "We manage every update and patch." },
+              { icon: <Puzzle className="w-8 h-8 text-accent" />, title: "Scalable Apps", desc: "Built to grow with your user base." }
             ].map((feature, i) => (
-              <div key={i} className="p-6 rounded-2xl bg-white/50 border border-white/20 backdrop-blur-sm shadow-sm hover:shadow-md transition-all">
-                <div className="mb-4">{feature.icon}</div>
-                <h3 className="font-bold text-primary text-base mb-2">{feature.title}</h3>
-                <p className="text-xs text-muted-foreground leading-relaxed">{feature.desc}</p>
+              <div key={i} className="p-8 rounded-2xl bg-white/50 border border-white/20 backdrop-blur-sm shadow-sm hover:shadow-md transition-all">
+                <div className="mb-5">{feature.icon}</div>
+                <h3 className="font-bold text-primary text-lg mb-2">{feature.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{feature.desc}</p>
               </div>
             ))}
           </div>
