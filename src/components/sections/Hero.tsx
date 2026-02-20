@@ -8,7 +8,7 @@ import Link from "next/link";
 export function Hero() {
   return (
     <section className="relative pt-24 pb-16 lg:pt-32 lg:pb-24 overflow-hidden bg-primary text-white">
-      {/* Subtle Background Grain/Gradient */}
+      {/* Subtle Background Gradient */}
       <div className="absolute inset-0 opacity-20 pointer-events-none bg-[radial-gradient(circle_at_50%_50%,rgba(36,197,219,0.1),transparent_70%)]" />
       
       <div className="container mx-auto px-6 relative z-10">
