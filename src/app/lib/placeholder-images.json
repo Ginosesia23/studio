@@ -10,13 +10,13 @@
     {
       "id": "logo-famio",
       "description": "Famio Logo",
-      "imageUrl": "/famio-logo.svg",
+      "imageUrl": "/famio-logo.png",
       "imageHint": "famio logo"
     },
     {
       "id": "logo-seajourney",
       "description": "SeaJourney Logo",
-      "imageUrl": "/seajourney-logo.svg",
+      "imageUrl": "/seajourney-logo.png",
       "imageHint": "seajourney logo"
     },
     {

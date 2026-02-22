@@ -8,7 +8,7 @@ import Link from "next/link";
 
 export function Hero() {
   return (
-    <section className="relative pt-24 pb-16 lg:pt-32 lg:pb-24 overflow-hidden bg-primary text-white">
+    <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden bg-primary text-white">
       {/* Subtle Background Gradient */}
       <div className="absolute inset-0 opacity-20 pointer-events-none bg-[radial-gradient(circle_at_50%_50%,rgba(36,197,219,0.1),transparent_70%)]" />
       
@@ -32,7 +32,7 @@ export function Hero() {
                 Start Project <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
-            <Button size="sm" variant="outline" asChild className="border-white/20 text-white hover:bg-white/5 h-9 px-6 font-bold rounded-lg text-xs transition-all bg-transparent backdrop-blur-sm">
+            <Button size="sm" variant="outline" asChild className="border-white/30 text-white hover:bg-white/10 h-9 px-6 font-bold rounded-lg text-xs transition-all bg-transparent backdrop-blur-sm">
               <Link href="#services">Explore Services</Link>
             </Button>
           </div>
@@ -53,7 +53,7 @@ export function Hero() {
               }
             ].map((feature, i) => (
               <div key={i} className="p-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all group">
-                <h3 className="font-bold text-white text-xs mb-1">{feature.title}</h3>
+                <h3 className="font-bold text-white text-[11px] mb-1">{feature.title}</h3>
                 <p className="text-[10px] text-blue-100/40 leading-relaxed font-medium">{feature.desc}</p>
               </div>
             ))}

@@ -31,19 +31,19 @@ export function Navbar() {
     <nav
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-500 px-6 lg:px-12",
-        isScrolled ? "py-3 bg-white/95 backdrop-blur-md shadow-lg border-b" : "py-8 bg-transparent"
+        isScrolled ? "py-3 bg-white/95 backdrop-blur-md shadow-lg border-b" : "py-6 bg-transparent"
       )}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2.5 group">
           <ApexLogo 
             className={cn(
-              "w-9 h-9 transition-colors",
+              "w-8 h-8 transition-colors duration-300",
               isScrolled ? "text-primary" : "text-accent"
             )} 
           />
           <span className={cn(
-            "font-headline text-xl font-black tracking-tighter uppercase transition-colors",
+            "font-headline text-lg font-black tracking-tighter uppercase transition-colors duration-300",
             isScrolled ? "text-primary" : "text-white"
           )}>
             APEX<span className="text-accent">SYSTEMS</span>
@@ -58,7 +58,7 @@ export function Navbar() {
                 key={link.name}
                 href={link.href}
                 className={cn(
-                  "text-[11px] font-black tracking-widest uppercase transition-colors",
+                  "text-[10px] font-bold tracking-widest uppercase transition-colors",
                   isScrolled ? "text-primary/70 hover:text-accent" : "text-white/70 hover:text-accent"
                 )}
               >
@@ -70,7 +70,7 @@ export function Navbar() {
             asChild 
             size="sm" 
             className={cn(
-              "font-bold h-10 px-6 rounded-lg transition-all",
+              "font-bold h-9 px-5 rounded-lg transition-all",
               isScrolled 
                 ? "bg-primary text-white hover:bg-primary/90" 
                 : "bg-accent text-primary hover:bg-accent/90"
@@ -88,7 +88,7 @@ export function Navbar() {
           )}
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
-          {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
@@ -99,7 +99,7 @@ export function Navbar() {
             <Link
               key={link.name}
               href={link.href}
-              className="text-xl font-headline font-black text-primary py-3 border-b border-border/50 hover:text-accent transition-colors"
+              className="text-lg font-headline font-black text-primary py-3 border-b border-border/50 hover:text-accent transition-colors"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               {link.name}

@@ -17,24 +17,24 @@ export function TrustedCompanies() {
         </p>
         <div className="flex flex-wrap justify-center items-center gap-16 lg:gap-24 opacity-70 hover:opacity-100 transition-opacity duration-500">
           {seajourneyLogo && (
-            <div className="relative w-40 h-16 group">
+            <div className="relative w-40 h-12 group">
               <Image
                 src={seajourneyLogo.imageUrl}
                 alt={seajourneyLogo.description}
                 fill
                 className="object-contain filter grayscale group-hover:grayscale-0 transition-all duration-500"
-                data-ai-hint={seajourneyLogo.imageHint}
+                data-ai-hint="logo corporate"
               />
             </div>
           )}
           {famioLogo && (
-            <div className="relative w-40 h-16 group">
+            <div className="relative w-40 h-12 group">
               <Image
                 src={famioLogo.imageUrl}
                 alt={famioLogo.description}
                 fill
                 className="object-contain filter grayscale group-hover:grayscale-0 transition-all duration-500"
-                data-ai-hint={famioLogo.imageHint}
+                data-ai-hint="logo tech"
               />
             </div>
           )}
