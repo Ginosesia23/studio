@@ -6,32 +6,38 @@ import Image from "next/image";
 import { PlaceHolderImages } from "@/app/lib/placeholder-images";
 
 export function TrustedCompanies() {
-  const logos = [
-    PlaceHolderImages.find((img) => img.id === "logo-1"),
-    PlaceHolderImages.find((img) => img.id === "logo-2"),
-    PlaceHolderImages.find((img) => img.id === "logo-3"),
-    PlaceHolderImages.find((img) => img.id === "logo-4"),
-    PlaceHolderImages.find((img) => img.id === "logo-5"),
-  ].filter(Boolean);
+  const famioLogo = PlaceHolderImages.find((img) => img.id === "logo-famio");
+  const apexLogo = PlaceHolderImages.find((img) => img.id === "logo-apex-partner");
 
   return (
-    <section className="py-16 bg-white border-y border-border/50">
+    <section className="py-12 bg-white border-y border-border/50">
       <div className="container mx-auto px-6">
-        <p className="text-center text-sm font-bold uppercase tracking-widest text-muted-foreground mb-12">
+        <p className="text-center text-[10px] font-black uppercase tracking-[0.3em] text-muted-foreground/60 mb-10">
           Empowering modern startups across the globe
         </p>
-        <div className="flex flex-wrap justify-center items-center gap-12 lg:gap-20 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
-          {logos.map((logo, idx) => (
-            <div key={idx} className="relative w-32 h-12">
+        <div className="flex flex-wrap justify-center items-center gap-16 lg:gap-24 opacity-70 hover:opacity-100 transition-opacity duration-500">
+          {famioLogo && (
+            <div className="relative w-40 h-16 group">
               <Image
-                src={logo?.imageUrl || ""}
-                alt={logo?.description || "Partner logo"}
+                src={famioLogo.imageUrl}
+                alt={famioLogo.description}
                 fill
-                className="object-contain"
-                data-ai-hint={logo?.imageHint}
+                className="object-contain filter grayscale group-hover:grayscale-0 transition-all duration-500"
+                data-ai-hint={famioLogo.imageHint}
               />
             </div>
-          ))}
+          )}
+          {apexLogo && (
+            <div className="relative w-40 h-16 group">
+              <Image
+                src={apexLogo.imageUrl}
+                alt={apexLogo.description}
+                fill
+                className="object-contain filter grayscale group-hover:grayscale-0 transition-all duration-500"
+                data-ai-hint={apexLogo.imageHint}
+              />
+            </div>
+          )}
         </div>
       </div>
     </section>

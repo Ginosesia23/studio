@@ -1,3 +1,4 @@
+
 {
   "placeholderImages": [
     {
@@ -5,6 +6,18 @@
       "description": "Modern server room with blue lighting",
       "imageUrl": "https://picsum.photos/seed/steadynode-hero/1200/800",
       "imageHint": "server room"
+    },
+    {
+      "id": "logo-famio",
+      "description": "Famio logo with colorful icons",
+      "imageUrl": "https://picsum.photos/seed/famio-logo/400/160",
+      "imageHint": "famio startup logo"
+    },
+    {
+      "id": "logo-apex-partner",
+      "description": "Apex Systems partner logo",
+      "imageUrl": "https://picsum.photos/seed/apex-systems-logo/400/160",
+      "imageHint": "apex systems logo"
     },
     {
       "id": "tech-stack",
@@ -35,36 +48,6 @@
       "description": "Professional support engineer at work",
       "imageUrl": "https://picsum.photos/seed/steadynode-support/800/600",
       "imageHint": "support engineer"
-    },
-    {
-      "id": "logo-1",
-      "description": "Partner logo 1",
-      "imageUrl": "https://picsum.photos/seed/node-l1/200/80",
-      "imageHint": "abstract logo"
-    },
-    {
-      "id": "logo-2",
-      "description": "Partner logo 2",
-      "imageUrl": "https://picsum.photos/seed/node-l2/200/80",
-      "imageHint": "abstract logo"
-    },
-    {
-      "id": "logo-3",
-      "description": "Partner logo 3",
-      "imageUrl": "https://picsum.photos/seed/node-l3/200/80",
-      "imageHint": "abstract logo"
-    },
-    {
-      "id": "logo-4",
-      "description": "Partner logo 4",
-      "imageUrl": "https://picsum.photos/seed/node-l4/200/80",
-      "imageHint": "abstract logo"
-    },
-    {
-      "id": "logo-5",
-      "description": "Partner logo 5",
-      "imageUrl": "https://picsum.photos/seed/node-l5/200/80",
-      "imageHint": "abstract logo"
     }
   ]
 }
