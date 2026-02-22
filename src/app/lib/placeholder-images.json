@@ -9,9 +9,15 @@
     },
     {
       "id": "logo-famio",
-      "description": "Famio logo with colorful icons",
-      "imageUrl": "https://picsum.photos/seed/famio-logo/400/160",
-      "imageHint": "famio startup logo"
+      "description": "Famio Logo",
+      "imageUrl": "/famio-logo.svg",
+      "imageHint": "famio logo"
+    },
+    {
+      "id": "logo-seajourney",
+      "description": "SeaJourney Logo",
+      "imageUrl": "/seajourney-logo.svg",
+      "imageHint": "seajourney logo"
     },
     {
       "id": "logo-apex-partner",
