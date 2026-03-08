@@ -34,8 +34,10 @@ export async function POST(req: Request) {
     const safeCompany = escapeHtml(company);
     const safeMessage = escapeHtml(message).replace(/\n/g, '<br />');
 
-    const { error } = await resend.emails.send({
-      from: 'Apex Systems <contact@apex-systems.co.uk>',
+    // NOTE: 'onboarding@resend.dev' is the default verified sender for new Resend accounts.
+    // Once you verify your domain (e.g., apex-systems.co.uk), you can change this to your custom email.
+    const { data, error } = await resend.emails.send({
+      from: 'Apex Systems Inquiry <onboarding@resend.dev>',
       to: ['contact@apex-systems.co.uk'],
       replyTo: email,
       subject: `New Apex Systems enquiry from ${name}`,
@@ -53,18 +55,18 @@ export async function POST(req: Request) {
     });
 
     if (error) {
-      console.error('Resend error:', error);
+      console.error('Resend API Error:', error);
       return NextResponse.json(
-        { error: 'Failed to send email.' },
+        { error: error.message || 'Failed to send email.' },
         { status: 500 }
       );
     }
 
-    return NextResponse.json({ success: true });
-  } catch (error) {
-    console.error('API Error:', error);
+    return NextResponse.json({ success: true, data });
+  } catch (err) {
+    console.error('Internal Server Error:', err);
     return NextResponse.json(
-      { error: 'Something went wrong.' },
+      { error: 'Something went wrong on our end.' },
       { status: 500 }
     );
   }

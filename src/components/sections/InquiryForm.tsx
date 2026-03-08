@@ -48,13 +48,22 @@ export function InquiryForm() {
       const result = await response.json();
 
       if (response.ok && result.success) {
-        setStatus({ type: 'success', message: 'Message sent successfully. We will be in touch within 24 hours.' });
+        setStatus({ 
+          type: 'success', 
+          message: 'Message sent successfully. We will be in touch within 24 hours.' 
+        });
         reset();
       } else {
-        setStatus({ type: 'error', message: result.error || 'Failed to send message. Please try again.' });
+        setStatus({ 
+          type: 'error', 
+          message: result.error || 'Failed to send message. Please try again.' 
+        });
       }
     } catch (error) {
-      setStatus({ type: 'error', message: 'Something went wrong. Please check your connection and try again.' });
+      setStatus({ 
+        type: 'error', 
+        message: 'Something went wrong. Please check your connection and try again.' 
+      });
     } finally {
       setLoading(false);
     }
