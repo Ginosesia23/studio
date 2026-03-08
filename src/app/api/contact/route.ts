@@ -16,15 +16,14 @@ function escapeHtml(input: string) {
 export async function POST(req: Request) {
   try {
     if (!apiKey) {
-      console.error('RESEND_API_KEY_APEX_SYSTEMS is not defined in environment variables.');
+      console.error('RESEND_API_KEY_APEX_SYSTEMS is not defined.');
       return NextResponse.json(
-        { error: 'API Configuration Error: Resend key is missing.' },
+        { error: 'API Configuration Error: Key is missing.' },
         { status: 500 }
       );
     }
 
     const body = await req.json();
-
     const name = String(body.name || '').trim();
     const email = String(body.email || '').trim();
     const company = String(body.company || '').trim();
@@ -42,68 +41,61 @@ export async function POST(req: Request) {
     const safeCompany = escapeHtml(company);
     const safeMessage = escapeHtml(message).replace(/\n/g, '<br />');
 
-    // 1. Send notification email to Apex Systems Admin
-    // Using onboarding@resend.dev. NOTE: Recipients are limited to your account email if unverified.
+    // 1. Send Notification to Apex Systems Admin
     const adminEmailResponse = await resend.emails.send({
-      from: 'Apex Systems <website@apex-systems.co.uk>',
+      from: 'Apex Systems <onboarding@resend.dev>',
       to: ['contact@apex-systems.co.uk'],
       replyTo: email,
       subject: `New Technical Inquiry from ${name}`,
       html: `
-        <div style="font-family:Arial,sans-serif;line-height:1.6;color:#111111;padding:20px;">
-          <h2 style="margin-top:0;color:#021123;">New Apex Systems Website Enquiry</h2>
+        <div style="font-family:sans-serif;line-height:1.6;color:#111;padding:20px;border:1px solid #eee;border-radius:8px;">
+          <h2 style="color:#021123;margin-top:0;">New Website Inquiry</h2>
           <p><strong>Name:</strong> ${safeName}</p>
           <p><strong>Email:</strong> ${safeEmail}</p>
-          <p><strong>Company:</strong> ${safeCompany || 'Not provided'}</p>
-          <hr style="border:0;border-top:1px solid #eee;margin:20px 0;" />
+          <p><strong>Company:</strong> ${safeCompany || 'N/A'}</p>
+          <hr style="border:none;border-top:1px solid #eee;margin:20px 0;" />
           <p><strong>Message:</strong></p>
           <p style="white-space:pre-wrap;">${safeMessage}</p>
-          <hr style="border:0;border-top:1px solid #eee;margin:20px 0;" />
-          <p style="font-size:13px;color:#666;">
-            This message was submitted via the Apex Systems website contact form.
-          </p>
         </div>
       `,
     });
 
     if (adminEmailResponse.error) {
-      console.error('Resend Admin Notification Error:', adminEmailResponse.error);
+      console.error('Resend Admin Error:', adminEmailResponse.error);
       return NextResponse.json(
         { error: `Resend Error: ${adminEmailResponse.error.message}` },
         { status: 500 }
       );
     }
 
-    // 2. Send automated confirmation email to the User (Non-blocking)
+    // 2. Send Automated Confirmation to User
+    // Note: This will only work if the recipient is your verified domain or your account email on the free tier.
     try {
       await resend.emails.send({
-        from: 'Apex Systems <website@apex-systems.co.uk>',
+        from: 'Apex Systems <onboarding@resend.dev>',
         to: [email],
-        subject: 'Inquiry Received - Apex Systems',
+        subject: 'We have received your inquiry - Apex Systems',
         html: `
-          <div style="font-family:Arial,sans-serif;line-height:1.6;color:#111111;padding:20px;">
-            <h2 style="margin-top:0;color:#021123;">Hi ${safeName.split(' ')[0]},</h2>
-            <p>Thank you for reaching out to Apex Systems. We've received your message regarding <strong>${safeCompany || 'your technical needs'}</strong>.</p>
-            <p>Our engineering team is currently reviewing your inquiry. We aim to provide a detailed response within 24 hours.</p>
-            <p>We look forward to potentially partnering with you.</p>
-            <hr style="border:0;border-top:1px solid #eee;margin:20px 0;" />
-            <p style="font-size:13px;color:#666;">
-              Best regards,<br />
-              <strong>The Apex Systems Engineering Team</strong>
+          <div style="font-family:sans-serif;line-height:1.6;color:#111;padding:20px;">
+            <h2 style="color:#021123;">Hello ${safeName.split(' ')[0]},</h2>
+            <p>Thank you for reaching out to Apex Systems. We've received your message and our technical team is currently reviewing it.</p>
+            <p>We aim to respond to all inquiries within 24 hours.</p>
+            <hr style="border:none;border-top:1px solid #eee;margin:20px 0;" />
+            <p style="font-size:12px;color:#666;">
+              This is an automated confirmation. Please do not reply directly to this email.
             </p>
           </div>
         `,
       });
     } catch (confirmError) {
-      // We don't fail the whole request if the user confirmation fails (likely due to verification)
-      console.warn('User Confirmation Email Failed:', confirmError);
+      // We don't fail the whole request if confirmation fails (common on unverified Resend accounts)
+      console.warn('User confirmation email could not be sent:', confirmError);
     }
 
     return NextResponse.json({ success: true });
   } catch (err: any) {
-    console.error('Internal Server Error:', err);
     return NextResponse.json(
-      { error: `Internal Server Error: ${err.message || 'Something went wrong'}` },
+      { error: `Internal Server Error: ${err.message}` },
       { status: 500 }
     );
   }
