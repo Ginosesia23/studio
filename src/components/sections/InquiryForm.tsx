@@ -8,14 +8,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, Send, CheckCircle2, Loader2 } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
+import { Mail, Send, CheckCircle2, Loader2, AlertCircle } from "lucide-react";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 const ADMIN_EMAIL = "contact@apex-systems.co.uk";
 
 const formSchema = z.object({
-  firstName: z.string().min(2, "First name is required"),
-  lastName: z.string().min(2, "Last name is required"),
+  name: z.string().min(2, "Full name is required"),
   email: z.string().email("Invalid email address"),
   company: z.string().optional(),
   message: z.string().min(10, "Message must be at least 10 characters"),
@@ -24,9 +23,8 @@ const formSchema = z.object({
 type FormData = z.infer<typeof formSchema>;
 
 export function InquiryForm() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const { toast } = useToast();
+  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState<{ type: 'success' | 'error', message: string } | null>(null);
 
   const {
     register,
@@ -38,35 +36,27 @@ export function InquiryForm() {
   });
 
   const onSubmit = async (data: FormData) => {
-    setIsSubmitting(true);
+    setLoading(true);
+    setStatus(null);
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: `${data.firstName} ${data.lastName}`,
-          email: data.email,
-          company: data.company,
-          message: data.message,
-        }),
+        body: JSON.stringify(data),
       });
 
       const result = await response.json();
 
-      if (result.success) {
-        setIsSubmitted(true);
+      if (response.ok && result.success) {
+        setStatus({ type: 'success', message: 'Message sent successfully. We will be in touch within 24 hours.' });
         reset();
       } else {
-        throw new Error(result.error || 'Failed to send');
+        setStatus({ type: 'error', message: result.error || 'Failed to send message. Please try again.' });
       }
     } catch (error) {
-      toast({
-        variant: "destructive",
-        title: "Submission failed",
-        description: "There was an error sending your message. Please check your connection and try again.",
-      });
+      setStatus({ type: 'error', message: 'Something went wrong. Please check your connection and try again.' });
     } finally {
-      setIsSubmitting(false);
+      setLoading(false);
     }
   };
 
@@ -95,100 +85,75 @@ export function InquiryForm() {
             </div>
           </div>
           
-          <div className="bg-background p-8 lg:p-12 rounded-[2rem] shadow-2xl border">
-            {isSubmitted ? (
-              <div className="h-full py-12 flex flex-col items-center justify-center text-center space-y-6 animate-in fade-in zoom-in">
-                <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center">
-                  <CheckCircle2 className="text-green-600 w-10 h-10" />
-                </div>
-                <div className="space-y-2">
-                  <h4 className="text-2xl font-bold text-primary">Inquiry Received</h4>
-                  <p className="text-base text-muted-foreground">
-                    An Apex Systems engineer will get back to you within 24 hours.
-                  </p>
-                </div>
-                <Button 
-                  onClick={() => setIsSubmitted(false)} 
-                  variant="outline" 
-                  size="default"
-                  className="border-primary text-primary font-bold h-12 px-8"
-                >
-                  Send Another Message
-                </Button>
+          <div className="bg-background p-8 lg:p-12 rounded-[2rem] shadow-2xl border relative">
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+              <div className="space-y-2">
+                <Label htmlFor="name" className="text-sm font-bold">Full Name</Label>
+                <Input 
+                  id="name" 
+                  placeholder="John Doe" 
+                  className="bg-white h-12 text-base rounded-xl"
+                  {...register("name")}
+                />
+                {errors.name && <p className="text-xs text-destructive font-medium">{errors.name.message}</p>}
               </div>
-            ) : (
-              <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <div className="space-y-2">
-                    <Label htmlFor="firstName" className="text-sm font-bold">First Name</Label>
-                    <Input 
-                      id="firstName" 
-                      placeholder="John" 
-                      className="bg-white h-12 text-base rounded-xl"
-                      {...register("firstName")}
-                    />
-                    {errors.firstName && <p className="text-xs text-destructive font-medium">{errors.firstName.message}</p>}
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="lastName" className="text-sm font-bold">Last Name</Label>
-                    <Input 
-                      id="lastName" 
-                      placeholder="Doe" 
-                      className="bg-white h-12 text-base rounded-xl"
-                      {...register("lastName")}
-                    />
-                    {errors.lastName && <p className="text-xs text-destructive font-medium">{errors.lastName.message}</p>}
-                  </div>
-                </div>
-                
-                <div className="space-y-2">
-                  <Label htmlFor="email" className="text-sm font-bold">Work Email</Label>
-                  <Input 
-                    id="email" 
-                    type="email" 
-                    placeholder="john@company.com" 
-                    className="bg-white h-12 text-base rounded-xl"
-                    {...register("email")}
-                  />
-                  {errors.email && <p className="text-xs text-destructive font-medium">{errors.email.message}</p>}
-                </div>
-                
-                <div className="space-y-2">
-                  <Label htmlFor="company" className="text-sm font-bold">Company Name</Label>
-                  <Input 
-                    id="company" 
-                    placeholder="Acme Inc." 
-                    className="bg-white h-12 text-base rounded-xl"
-                    {...register("company")}
-                  />
-                </div>
-                
-                <div className="space-y-2">
-                  <Label htmlFor="message" className="text-sm font-bold">How can we support you?</Label>
-                  <Textarea 
-                    id="message" 
-                    placeholder="Tell us about your hosting or development needs..." 
-                    className="min-h-[120px] bg-white text-base rounded-xl"
-                    {...register("message")}
-                  />
-                  {errors.message && <p className="text-xs text-destructive font-medium">{errors.message.message}</p>}
-                </div>
-                
-                <Button 
-                  disabled={isSubmitting}
-                  className="w-full bg-primary text-white hover:bg-primary/90 h-14 text-lg font-bold rounded-xl group"
-                >
-                  {isSubmitting ? (
-                    <Loader2 className="animate-spin mr-2 w-5 h-5" />
-                  ) : (
-                    <>
-                      Send Inquiry
-                      <Send className="ml-2 w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                    </>
-                  )}
-                </Button>
-              </form>
-            )}
+              
+              <div className="space-y-2">
+                <Label htmlFor="email" className="text-sm font-bold">Work Email</Label>
+                <Input 
+                  id="email" 
+                  type="email" 
+                  placeholder="john@company.com" 
+                  className="bg-white h-12 text-base rounded-xl"
+                  {...register("email")}
+                />
+                {errors.email && <p className="text-xs text-destructive font-medium">{errors.email.message}</p>}
+              </div>
+              
+              <div className="space-y-2">
+                <Label htmlFor="company" className="text-sm font-bold">Company Name (Optional)</Label>
+                <Input 
+                  id="company" 
+                  placeholder="Acme Inc." 
+                  className="bg-white h-12 text-base rounded-xl"
+                  {...register("company")}
+                />
+              </div>
+              
+              <div className="space-y-2">
+                <Label htmlFor="message" className="text-sm font-bold">How can we support you?</Label>
+                <Textarea 
+                  id="message" 
+                  placeholder="Tell us about your hosting or development needs..." 
+                  className="min-h-[120px] bg-white text-base rounded-xl"
+                  {...register("message")}
+                />
+                {errors.message && <p className="text-xs text-destructive font-medium">{errors.message.message}</p>}
+              </div>
+              
+              <Button 
+                type="submit"
+                disabled={loading}
+                className="w-full bg-primary text-white hover:bg-primary/90 h-14 text-lg font-bold rounded-xl group"
+              >
+                {loading ? (
+                  <Loader2 className="animate-spin mr-2 w-5 h-5" />
+                ) : (
+                  <>
+                    Send Inquiry
+                    <Send className="ml-2 w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                  </>
+                )}
+              </Button>
+
+              {status && (
+                <Alert variant={status.type === 'success' ? 'default' : 'destructive'} className={status.type === 'success' ? 'bg-green-50 border-green-200 text-green-800' : ''}>
+                  {status.type === 'success' ? <CheckCircle2 className="h-4 w-4" /> : <AlertCircle className="h-4 w-4" />}
+                  <AlertTitle className="font-bold">{status.type === 'success' ? 'Success' : 'Error'}</AlertTitle>
+                  <AlertDescription>{status.message}</AlertDescription>
+                </Alert>
+              )}
+            </form>
           </div>
         </div>
       </div>

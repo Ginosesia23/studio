@@ -1,6 +1,7 @@
 import { Resend } from 'resend';
 import { NextResponse } from 'next/server';
 
+// Ensure you have RESEND_API_KEY in your .env file
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 function escapeHtml(input: string) {
