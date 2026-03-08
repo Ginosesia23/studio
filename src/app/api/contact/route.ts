@@ -42,8 +42,9 @@ export async function POST(req: Request) {
     const safeMessage = escapeHtml(message).replace(/\n/g, '<br />');
 
     // 1. Send Notification to Apex Systems Admin
+    // Using website@ to distinguish the sender from the contact@ recipient
     const adminEmailResponse = await resend.emails.send({
-      from: 'Apex Systems <website@apex-systems.co.uk>',
+      from: 'Apex Systems Website <website@apex-systems.co.uk>',
       to: ['contact@apex-systems.co.uk'],
       replyTo: email,
       subject: `New Technical Inquiry from ${name}`,
@@ -61,25 +62,24 @@ export async function POST(req: Request) {
     });
 
     if (adminEmailResponse.error) {
-      console.error('Resend Admin Error:', adminEmailResponse.error);
+      console.error('Resend Admin Notification Error:', adminEmailResponse.error);
       return NextResponse.json(
-        { error: `Resend Error: ${adminEmailResponse.error.message}` },
+        { error: `Failed to notify admin: ${adminEmailResponse.error.message}` },
         { status: 500 }
       );
     }
 
     // 2. Send Automated Confirmation to User
-    // Note: This will only work if the recipient is your verified domain or your account email on the free tier.
     try {
       await resend.emails.send({
-        from: 'Apex Systems <no-reply@apex-systems.co.uk>',
+        from: 'Apex Systems <contact@apex-systems.co.uk>',
         to: [email],
-        subject: 'We have received your inquiry - Apex Systems',
+        subject: 'Inquiry Received - Apex Systems',
         html: `
           <div style="font-family:sans-serif;line-height:1.6;color:#111;padding:20px;">
             <h2 style="color:#021123;">Hello ${safeName.split(' ')[0]},</h2>
-            <p>Thank you for reaching out to Apex Systems. We've received your message and our technical team is currently reviewing it.</p>
-            <p>We aim to respond to all inquiries within 24 hours.</p>
+            <p>Thank you for reaching out to Apex Systems. We've received your inquiry regarding your technical infrastructure and custom development needs.</p>
+            <p>A member of our engineering team will review your message and get back to you within 24 hours.</p>
             <hr style="border:none;border-top:1px solid #eee;margin:20px 0;" />
             <p style="font-size:12px;color:#666;">
               This is an automated confirmation. Please do not reply directly to this email.
@@ -88,12 +88,13 @@ export async function POST(req: Request) {
         `,
       });
     } catch (confirmError) {
-      // We don't fail the whole request if confirmation fails (common on unverified Resend accounts)
+      // We don't fail the whole request if only the user confirmation fails
       console.warn('User confirmation email could not be sent:', confirmError);
     }
 
     return NextResponse.json({ success: true });
   } catch (err: any) {
+    console.error('Internal Server Error in contact API:', err);
     return NextResponse.json(
       { error: `Internal Server Error: ${err.message}` },
       { status: 500 }
