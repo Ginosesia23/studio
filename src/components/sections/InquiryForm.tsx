@@ -10,7 +10,6 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Mail, Send, CheckCircle2, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { sendContactEmail } from "@/app/actions/contact";
 
 const ADMIN_EMAIL = "contact@apex-systems.co.uk";
 
@@ -41,18 +40,30 @@ export function InquiryForm() {
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
     try {
-      const result = await sendContactEmail(data);
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: `${data.firstName} ${data.lastName}`,
+          email: data.email,
+          company: data.company,
+          message: data.message,
+        }),
+      });
+
+      const result = await response.json();
+
       if (result.success) {
         setIsSubmitted(true);
         reset();
       } else {
-        throw new Error(result.error as string);
+        throw new Error(result.error || 'Failed to send');
       }
     } catch (error) {
       toast({
         variant: "destructive",
         title: "Submission failed",
-        description: "There was an error sending your message. Please try again later.",
+        description: "There was an error sending your message. Please check your connection and try again.",
       });
     } finally {
       setIsSubmitting(false);
