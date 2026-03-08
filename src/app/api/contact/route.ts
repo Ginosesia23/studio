@@ -1,8 +1,8 @@
 import { Resend } from 'resend';
 import { NextResponse } from 'next/server';
 
-// Note: Ensure RESEND_API_KEY is set in your .env file
-const resend = new Resend(process.env.RESEND_API_KEY_APEX_SYSTEMS);
+// Standardized environment variable name
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 function escapeHtml(input: string) {
   return input
@@ -35,15 +35,13 @@ export async function POST(req: Request) {
     const safeMessage = escapeHtml(message).replace(/\n/g, '<br />');
 
     // 1. Send notification email to Apex Systems Admin
-    // NOTE: 'onboarding@resend.dev' is the default sender for new Resend accounts.
-    // For production and sending to external users, you must verify your domain in the Resend console.
+    // Using onboarding@resend.dev for testing. In production, use your verified domain email.
     const adminEmailResponse = await resend.emails.send({
       from: 'Apex Systems <onboarding@resend.dev>',
       to: ['contact@apex-systems.co.uk'],
       replyTo: email,
       subject: `New Technical Inquiry from ${name}`,
       html: `
-
         <div style="font-family:Arial,sans-serif;line-height:1.6;color:#111111;padding:20px;">
           <h2 style="margin-top:0;color:#021123;">New Apex Systems Website Enquiry</h2>
           <p><strong>Name:</strong> ${safeName}</p>
@@ -63,14 +61,13 @@ export async function POST(req: Request) {
     if (adminEmailResponse.error) {
       console.error('Resend Admin Notification Error:', adminEmailResponse.error);
       return NextResponse.json(
-        { error: 'Failed to send admin notification. Please try again later.' },
+        { error: 'Failed to send admin notification. Check API key configuration.' },
         { status: 500 }
       );
     }
 
     // 2. Send automated confirmation email to the User
-    // IMPORTANT: This call will only succeed if you have verified your domain in Resend.
-    // If your domain is not verified, Resend restricts sending to your own account email.
+    // NOTE: This will only reach external users if your domain is verified in Resend.
     try {
       await resend.emails.send({
         from: 'Apex Systems <onboarding@resend.dev>',
@@ -81,7 +78,7 @@ export async function POST(req: Request) {
             <h2 style="margin-top:0;color:#021123;">Hi ${safeName.split(' ')[0]},</h2>
             <p>Thank you for reaching out to Apex Systems. We've received your message regarding <strong>${safeCompany || 'your technical needs'}</strong>.</p>
             <p>Our engineering team is currently reviewing your inquiry. We aim to provide a detailed response or schedule a consultation within 24 hours.</p>
-            <p>We look forward to potentially partnering with you to stabilize and scale your digital systems.</p>
+            <p>We look forward to potentially partnering with you.</p>
             <hr style="border:0;border-top:1px solid #eee;margin:20px 0;" />
             <p style="font-size:13px;color:#666;">
               Best regards,<br />
@@ -91,9 +88,7 @@ export async function POST(req: Request) {
         `,
       });
     } catch (confirmError) {
-      // We log but don't fail the overall submission if the user confirmation fails
-      // (likely due to unverified domain or restricted testing mode).
-      console.warn('Resend User Confirmation Warning:', confirmError);
+      console.warn('Resend User Confirmation Warning (likely unverified domain):', confirmError);
     }
 
     return NextResponse.json({ success: true });
