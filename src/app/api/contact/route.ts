@@ -37,7 +37,7 @@ export async function POST(req: Request) {
     // NOTE: 'onboarding@resend.dev' is the default verified sender for new Resend accounts.
     // Once you verify your domain (e.g., apex-systems.co.uk), you can change this to your custom email.
     const { data, error } = await resend.emails.send({
-      from: email,
+      from: 'Apex Systems Website <noreply@apex-systems.co.uk>',
       to: ['contact@apex-systems.co.uk'],
       replyTo: email,
       subject: `New Apex Systems enquiry from ${name}`,
@@ -52,8 +52,18 @@ export async function POST(req: Request) {
           <p style="white-space:pre-wrap;">${safeMessage}</p>
         </div>
       `,
+      text: `
+    New Technical Inquiry
+    
+    Name: ${name}
+    Email: ${email}
+    Company: ${company || 'Not provided'}
+    
+    Message:
+    ${message}
+      `,
     });
-
+    
     if (error) {
       console.error('Resend API Error:', error);
       return NextResponse.json(
