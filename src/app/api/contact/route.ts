@@ -2,7 +2,7 @@ import { Resend } from 'resend';
 import { NextResponse } from 'next/server';
 
 // Note: Ensure RESEND_API_KEY is set in your .env file
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend(process.env.RESEND_API_KEY_APEX_SYSTEMS);
 
 function escapeHtml(input: string) {
   return input
@@ -43,7 +43,7 @@ export async function POST(req: Request) {
       replyTo: email,
       subject: `New Technical Inquiry from ${name}`,
       html: `
-      
+
         <div style="font-family:Arial,sans-serif;line-height:1.6;color:#111111;padding:20px;">
           <h2 style="margin-top:0;color:#021123;">New Apex Systems Website Enquiry</h2>
           <p><strong>Name:</strong> ${safeName}</p>
