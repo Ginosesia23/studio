@@ -37,23 +37,38 @@ export async function POST(req: Request) {
     // NOTE: 'onboarding@resend.dev' is the default verified sender for new Resend accounts.
     // Once you verify your domain (e.g., apex-systems.co.uk), you can change this to your custom email.
     const { data, error } = await resend.emails.send({
-      from: 'Apex Systems Website <website@apex-systems.co.uk>',
+      from: 'Apex Systems <website@apex-systems.co.uk>',
       to: ['contact@apex-systems.co.uk'],
       replyTo: email,
       subject: `New Apex Systems enquiry from ${name}`,
+    
+      headers: {
+        'X-Entity-Ref-ID': `${Date.now()}`,
+      },
+    
       html: `
-        <div style="font-family:Arial,sans-serif;line-height:1.6;color:#111111;padding:20px;border:1px solid #eee;border-radius:10px;">
-          <h2 style="margin-top:0;color:#021123;">New Technical Inquiry</h2>
+        <div style="font-family:Arial,sans-serif;line-height:1.6;color:#111111;padding:20px;">
+          <h2 style="margin-top:0;color:#021123;">New Apex Systems Website Enquiry</h2>
+    
           <p><strong>Name:</strong> ${safeName}</p>
           <p><strong>Email:</strong> ${safeEmail}</p>
           <p><strong>Company:</strong> ${safeCompany || 'Not provided'}</p>
+    
           <hr style="border:0;border-top:1px solid #eee;margin:20px 0;" />
+    
           <p><strong>Message:</strong></p>
           <p style="white-space:pre-wrap;">${safeMessage}</p>
+    
+          <hr style="border:0;border-top:1px solid #eee;margin:20px 0;" />
+    
+          <p style="font-size:13px;color:#666;">
+            This message was submitted via the Apex Systems website contact form.
+          </p>
         </div>
       `,
+    
       text: `
-    New Technical Inquiry
+    New Apex Systems Website Enquiry
     
     Name: ${name}
     Email: ${email}
@@ -61,9 +76,10 @@ export async function POST(req: Request) {
     
     Message:
     ${message}
-      `,
-    });
     
+    Submitted from apex-systems.co.uk
+    `,
+    });    
     if (error) {
       console.error('Resend API Error:', error);
       return NextResponse.json(
