@@ -72,7 +72,7 @@ export async function POST(req: Request) {
     // Note: This will only work if the recipient is your verified domain or your account email on the free tier.
     try {
       await resend.emails.send({
-        from: 'Apex Systems <onboarding@resend.dev>',
+        from: 'Apex Systems <no-reply@apex-.dev>',
         to: [email],
         subject: 'We have received your inquiry - Apex Systems',
         html: `
