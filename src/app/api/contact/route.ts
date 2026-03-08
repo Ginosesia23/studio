@@ -38,7 +38,10 @@ export async function POST(req: Request) {
     // Once you verify your domain (e.g., apex-systems.co.uk), you can change this to your custom email.
     const { data, error } = await resend.emails.send({
       from: 'Apex Systems Website <noreply@apex-systems.co.uk>',
-      to: ['contact@apex-systems.co.uk'],
+      to: [
+        'contact@apex-systems.co.uk',
+        'ginosesia23@gmail.com'
+      ],
       replyTo: email,
       subject: `New Apex Systems enquiry from ${name}`,
       html: `
