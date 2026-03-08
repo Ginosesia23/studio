@@ -2,7 +2,7 @@ import { Resend } from 'resend';
 import { NextResponse } from 'next/server';
 
 // Ensure you have RESEND_API_KEY in your .env file
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend(process.env.RESEND_API_KEY_APEX_SYSTEMS);
 
 function escapeHtml(input: string) {
   return input
@@ -37,7 +37,7 @@ export async function POST(req: Request) {
     // NOTE: 'onboarding@resend.dev' is the default verified sender for new Resend accounts.
     // Once you verify your domain (e.g., apex-systems.co.uk), you can change this to your custom email.
     const { data, error } = await resend.emails.send({
-      from: 'Apex Systems Inquiry <onboarding@resend.dev>',
+      from: 'Apex Systems <contact@apex-systems.co.uk>',
       to: ['contact@apex-systems.co.uk'],
       replyTo: email,
       subject: `New Apex Systems enquiry from ${name}`,
