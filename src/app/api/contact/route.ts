@@ -45,7 +45,7 @@ export async function POST(req: Request) {
     // 1. Send notification email to Apex Systems Admin
     // Using onboarding@resend.dev. NOTE: Recipients are limited to your account email if unverified.
     const adminEmailResponse = await resend.emails.send({
-      from: 'Apex Systems <onboarding@resend.dev>',
+      from: 'Apex Systems <noreply@apex-systems.co.uk>',
       to: ['contact@apex-systems.co.uk'],
       replyTo: email,
       subject: `New Technical Inquiry from ${name}`,
