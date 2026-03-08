@@ -1,8 +1,8 @@
 import { Resend } from 'resend';
 import { NextResponse } from 'next/server';
 
-// Ensure you have RESEND_API_KEY in your .env file
-const resend = new Resend(process.env.RESEND_API_KEY_APEX_SYSTEMS);
+// Note: Ensure RESEND_API_KEY is set in your .env file
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 function escapeHtml(input: string) {
   return input
@@ -34,61 +34,68 @@ export async function POST(req: Request) {
     const safeCompany = escapeHtml(company);
     const safeMessage = escapeHtml(message).replace(/\n/g, '<br />');
 
-    // NOTE: 'onboarding@resend.dev' is the default verified sender for new Resend accounts.
-    // Once you verify your domain (e.g., apex-systems.co.uk), you can change this to your custom email.
-    const { data, error } = await resend.emails.send({
-      from: 'Apex Systems <website@apex-systems.co.uk>',
+    // 1. Send notification email to Apex Systems Admin
+    // NOTE: 'onboarding@resend.dev' is the default sender for new Resend accounts.
+    // For production and sending to external users, you must verify your domain in the Resend console.
+    const adminEmailResponse = await resend.emails.send({
+      from: 'Apex Systems <onboarding@resend.dev>',
       to: ['contact@apex-systems.co.uk'],
       replyTo: email,
-      subject: `New Apex Systems enquiry from ${name}`,
-    
-      headers: {
-        'X-Entity-Ref-ID': `${Date.now()}`,
-      },
-    
+      subject: `New Technical Inquiry from ${name}`,
       html: `
         <div style="font-family:Arial,sans-serif;line-height:1.6;color:#111111;padding:20px;">
           <h2 style="margin-top:0;color:#021123;">New Apex Systems Website Enquiry</h2>
-    
           <p><strong>Name:</strong> ${safeName}</p>
           <p><strong>Email:</strong> ${safeEmail}</p>
           <p><strong>Company:</strong> ${safeCompany || 'Not provided'}</p>
-    
           <hr style="border:0;border-top:1px solid #eee;margin:20px 0;" />
-    
           <p><strong>Message:</strong></p>
           <p style="white-space:pre-wrap;">${safeMessage}</p>
-    
           <hr style="border:0;border-top:1px solid #eee;margin:20px 0;" />
-    
           <p style="font-size:13px;color:#666;">
             This message was submitted via the Apex Systems website contact form.
           </p>
         </div>
       `,
-    
-      text: `
-    New Apex Systems Website Enquiry
-    
-    Name: ${name}
-    Email: ${email}
-    Company: ${company || 'Not provided'}
-    
-    Message:
-    ${message}
-    
-    Submitted from apex-systems.co.uk
-    `,
-    });    
-    if (error) {
-      console.error('Resend API Error:', error);
+    });
+
+    if (adminEmailResponse.error) {
+      console.error('Resend Admin Notification Error:', adminEmailResponse.error);
       return NextResponse.json(
-        { error: error.message || 'Failed to send email.' },
+        { error: 'Failed to send admin notification. Please try again later.' },
         { status: 500 }
       );
     }
 
-    return NextResponse.json({ success: true, data });
+    // 2. Send automated confirmation email to the User
+    // IMPORTANT: This call will only succeed if you have verified your domain in Resend.
+    // If your domain is not verified, Resend restricts sending to your own account email.
+    try {
+      await resend.emails.send({
+        from: 'Apex Systems <onboarding@resend.dev>',
+        to: [email],
+        subject: 'Inquiry Received - Apex Systems',
+        html: `
+          <div style="font-family:Arial,sans-serif;line-height:1.6;color:#111111;padding:20px;">
+            <h2 style="margin-top:0;color:#021123;">Hi ${safeName.split(' ')[0]},</h2>
+            <p>Thank you for reaching out to Apex Systems. We've received your message regarding <strong>${safeCompany || 'your technical needs'}</strong>.</p>
+            <p>Our engineering team is currently reviewing your inquiry. We aim to provide a detailed response or schedule a consultation within 24 hours.</p>
+            <p>We look forward to potentially partnering with you to stabilize and scale your digital systems.</p>
+            <hr style="border:0;border-top:1px solid #eee;margin:20px 0;" />
+            <p style="font-size:13px;color:#666;">
+              Best regards,<br />
+              <strong>The Apex Systems Engineering Team</strong>
+            </p>
+          </div>
+        `,
+      });
+    } catch (confirmError) {
+      // We log but don't fail the overall submission if the user confirmation fails
+      // (likely due to unverified domain or restricted testing mode).
+      console.warn('Resend User Confirmation Warning:', confirmError);
+    }
+
+    return NextResponse.json({ success: true });
   } catch (err) {
     console.error('Internal Server Error:', err);
     return NextResponse.json(
