@@ -1,8 +1,8 @@
 import { Resend } from 'resend';
 import { NextResponse } from 'next/server';
 
-// Updated to use the specific API key provided by the user
-const resend = new Resend(process.env.RESEND_API_KEY_APEX_SYSTEMS);
+const apiKey = process.env.RESEND_API_KEY_APEX_SYSTEMS;
+const resend = new Resend(apiKey);
 
 function escapeHtml(input: string) {
   return input
@@ -15,6 +15,14 @@ function escapeHtml(input: string) {
 
 export async function POST(req: Request) {
   try {
+    if (!apiKey) {
+      console.error('RESEND_API_KEY_APEX_SYSTEMS is not defined in environment variables.');
+      return NextResponse.json(
+        { error: 'API Configuration Error: Resend key is missing.' },
+        { status: 500 }
+      );
+    }
+
     const body = await req.json();
 
     const name = String(body.name || '').trim();
@@ -35,7 +43,7 @@ export async function POST(req: Request) {
     const safeMessage = escapeHtml(message).replace(/\n/g, '<br />');
 
     // 1. Send notification email to Apex Systems Admin
-    // Using onboarding@resend.dev for testing. In production, use your verified domain email.
+    // Using onboarding@resend.dev. NOTE: Recipients are limited to your account email if unverified.
     const adminEmailResponse = await resend.emails.send({
       from: 'Apex Systems <onboarding@resend.dev>',
       to: ['contact@apex-systems.co.uk'],
@@ -61,13 +69,12 @@ export async function POST(req: Request) {
     if (adminEmailResponse.error) {
       console.error('Resend Admin Notification Error:', adminEmailResponse.error);
       return NextResponse.json(
-        { error: 'Failed to send admin notification. Check API key configuration.' },
+        { error: `Resend Error: ${adminEmailResponse.error.message}` },
         { status: 500 }
       );
     }
 
-    // 2. Send automated confirmation email to the User
-    // NOTE: This will only reach external users if your domain is verified in Resend.
+    // 2. Send automated confirmation email to the User (Non-blocking)
     try {
       await resend.emails.send({
         from: 'Apex Systems <onboarding@resend.dev>',
@@ -77,7 +84,7 @@ export async function POST(req: Request) {
           <div style="font-family:Arial,sans-serif;line-height:1.6;color:#111111;padding:20px;">
             <h2 style="margin-top:0;color:#021123;">Hi ${safeName.split(' ')[0]},</h2>
             <p>Thank you for reaching out to Apex Systems. We've received your message regarding <strong>${safeCompany || 'your technical needs'}</strong>.</p>
-            <p>Our engineering team is currently reviewing your inquiry. We aim to provide a detailed response or schedule a consultation within 24 hours.</p>
+            <p>Our engineering team is currently reviewing your inquiry. We aim to provide a detailed response within 24 hours.</p>
             <p>We look forward to potentially partnering with you.</p>
             <hr style="border:0;border-top:1px solid #eee;margin:20px 0;" />
             <p style="font-size:13px;color:#666;">
@@ -88,14 +95,15 @@ export async function POST(req: Request) {
         `,
       });
     } catch (confirmError) {
-      console.warn('Resend User Confirmation Warning (likely unverified domain):', confirmError);
+      // We don't fail the whole request if the user confirmation fails (likely due to verification)
+      console.warn('User Confirmation Email Failed:', confirmError);
     }
 
     return NextResponse.json({ success: true });
-  } catch (err) {
+  } catch (err: any) {
     console.error('Internal Server Error:', err);
     return NextResponse.json(
-      { error: 'Something went wrong on our end.' },
+      { error: `Internal Server Error: ${err.message || 'Something went wrong'}` },
       { status: 500 }
     );
   }
