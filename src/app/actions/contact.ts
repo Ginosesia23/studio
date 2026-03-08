@@ -2,7 +2,8 @@
 
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Updated to use the specific API key provided by the user
+const resend = new Resend(process.env.RESEND_API_KEY_APEX_SYSTEMS);
 
 export async function sendContactEmail(data: {
   firstName: string;

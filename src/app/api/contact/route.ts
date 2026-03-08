@@ -1,8 +1,8 @@
 import { Resend } from 'resend';
 import { NextResponse } from 'next/server';
 
-// Standardized environment variable name
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Updated to use the specific API key provided by the user
+const resend = new Resend(process.env.RESEND_API_KEY_APEX_SYSTEMS);
 
 function escapeHtml(input: string) {
   return input
