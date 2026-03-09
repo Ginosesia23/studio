@@ -24,11 +24,11 @@ export function AboutUs() {
   ];
 
   return (
-    <section id="about" className="py-20 bg-background">
+    <section id="about" className="py-24 bg-background">
       <div className="container mx-auto px-6">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-14">
-            <h2 className="text-sm font-bold uppercase tracking-widest text-accent mb-3">Our Mission</h2>
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-sm font-bold uppercase tracking-widest text-accent mb-4">Our Mission</h2>
             <h3 className="font-headline text-3xl lg:text-5xl font-bold text-primary mb-6">Your Long-Term Tech Partner</h3>
             <p className="text-lg text-muted-foreground leading-relaxed max-w-3xl mx-auto">
               Apex Systems was founded to empower small companies with enterprise-level technical expertise. 
@@ -37,23 +37,23 @@ export function AboutUs() {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-14">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
             {values.map((v, idx) => (
-              <div key={idx} className="text-center space-y-3">
+              <div key={idx} className="p-8 rounded-3xl bg-white border border-border/50 text-center space-y-4 hover:shadow-lg transition-shadow">
                 <div className="mx-auto w-16 h-16 bg-primary/5 rounded-2xl flex items-center justify-center border border-primary/10">
                   {v.icon}
                 </div>
-                <h4 className="font-bold text-lg text-primary">{v.title}</h4>
-                <p className="text-muted-foreground text-xs leading-relaxed">{v.desc}</p>
+                <h4 className="font-bold text-xl text-primary">{v.title}</h4>
+                <p className="text-muted-foreground text-sm leading-relaxed">{v.desc}</p>
               </div>
             ))}
           </div>
 
-          <div className="p-8 lg:p-12 rounded-[2rem] bg-primary text-white relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-48 h-48 bg-accent/20 blur-[60px] rounded-full" />
+          <div className="p-10 lg:p-16 rounded-[2.5rem] bg-primary text-white relative overflow-hidden shadow-2xl">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-accent/20 blur-[80px] rounded-full" />
             <div className="relative z-10">
-              <h4 className="text-xl font-bold mb-8">What defines our partnership:</h4>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <h4 className="text-2xl font-bold mb-10">What defines our partnership:</h4>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {[
                   "Full Platform Ownership",
                   "Proactive System Maintenance",
@@ -62,11 +62,11 @@ export function AboutUs() {
                   "Security-First Architecture",
                   "Direct Access to Engineers"
                 ].map((value, idx) => (
-                  <div key={idx} className="flex items-center gap-3">
-                    <div className="w-6 h-6 rounded-full bg-accent/20 flex items-center justify-center">
-                      <CheckCircle className="text-accent w-3.5 h-3.5" />
+                  <div key={idx} className="flex items-center gap-4">
+                    <div className="w-7 h-7 rounded-full bg-accent/20 flex items-center justify-center shrink-0">
+                      <CheckCircle className="text-accent w-4 h-4" />
                     </div>
-                    <span className="font-semibold text-base text-blue-50">{value}</span>
+                    <span className="font-semibold text-lg text-blue-50">{value}</span>
                   </div>
                 ))}
               </div>

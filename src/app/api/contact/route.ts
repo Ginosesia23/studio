@@ -37,7 +37,7 @@ export async function POST(req: Request) {
     // 1. Send Technical Inquiry to Apex Systems Admin
     // Using a clear "From" display name to prevent inbox spoofing filters
     const adminEmail = await resend.emails.send({
-      from: 'Apex Systems Website <contact@apex-systems.co.uk>',
+      from: 'Apex Systems Website <website@apex-systems.co.uk>',
       to: 'contact@apex-systems.co.uk',
       replyTo: email,
       subject: `New Technical Inquiry from ${name}`,

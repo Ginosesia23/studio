@@ -70,7 +70,7 @@ export function Navbar() {
             asChild 
             size="sm" 
             className={cn(
-              "font-bold h-9 px-5 rounded-lg transition-all",
+              "font-bold h-10 px-6 rounded-lg transition-all",
               isScrolled 
                 ? "bg-primary text-white hover:bg-primary/90" 
                 : "bg-accent text-primary hover:bg-accent/90"
