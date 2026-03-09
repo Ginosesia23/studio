@@ -1,3 +1,4 @@
+
 "use client";
 
 import React from "react";
@@ -20,11 +21,11 @@ export function Hero() {
             <span className="uppercase tracking-[0.3em] text-[10px] sm:text-xs">Build • Maintain • Evolve</span>
           </div>
           
-          <h1 className="font-headline text-5xl lg:text-8xl font-black leading-[1.1] mb-10 animate-fade-up animate-delay-100 tracking-tighter">
+          <h1 className="font-headline text-4xl md:text-6xl lg:text-7xl font-black leading-[1.1] mb-10 animate-fade-up animate-delay-100 tracking-tighter">
             Platform Creation & <br /><span className="text-accent">Managed Maintenance.</span>
           </h1>
           
-          <p className="text-xl lg:text-2xl text-blue-100/70 mb-14 max-w-3xl mx-auto leading-relaxed animate-fade-up animate-delay-200 font-medium">
+          <p className="text-lg lg:text-xl text-blue-100/70 mb-14 max-w-3xl mx-auto leading-relaxed animate-fade-up animate-delay-200 font-medium">
             We engineer high-performance systems for startups and handle the heavy lifting of updates, security, and custom feature development.
           </p>
           

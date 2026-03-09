@@ -76,7 +76,7 @@ export function Navbar() {
                 : "bg-accent text-primary hover:bg-accent/90"
             )}
           >
-            <Link href="#contact">Consultation</Link>
+            <Link href="#contact">Contact</Link>
           </Button>
         </div>
 
@@ -107,7 +107,7 @@ export function Navbar() {
           ))}
           <Button asChild className="w-full h-12 text-base font-bold bg-primary text-white rounded-xl mt-2">
             <Link href="#contact" onClick={() => setIsMobileMenuOpen(false)}>
-              Get Started
+              Contact Us
             </Link>
           </Button>
         </div>

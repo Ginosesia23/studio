@@ -1,3 +1,4 @@
+
 "use client";
 
 import React from "react";
@@ -25,11 +26,11 @@ export function AboutUs() {
   return (
     <section id="about" className="py-20 bg-background">
       <div className="container mx-auto px-6">
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           <div className="text-center mb-14">
-            <h2 className="text-xs font-bold uppercase tracking-widest text-accent mb-3">Our Mission</h2>
-            <h3 className="font-headline text-3xl lg:text-4xl font-bold text-primary mb-6">Your Long-Term Tech Partner</h3>
-            <p className="text-base text-muted-foreground leading-relaxed">
+            <h2 className="text-sm font-bold uppercase tracking-widest text-accent mb-3">Our Mission</h2>
+            <h3 className="font-headline text-3xl lg:text-5xl font-bold text-primary mb-6">Your Long-Term Tech Partner</h3>
+            <p className="text-lg text-muted-foreground leading-relaxed max-w-3xl mx-auto">
               Apex Systems was founded to empower small companies with enterprise-level technical expertise. 
               We believe that small businesses deserve a partner who not only builds their platform but 
               stands by it through every update and required change.
@@ -48,11 +49,11 @@ export function AboutUs() {
             ))}
           </div>
 
-          <div className="p-8 lg:p-10 rounded-[1.5rem] bg-primary text-white relative overflow-hidden">
+          <div className="p-8 lg:p-12 rounded-[2rem] bg-primary text-white relative overflow-hidden">
             <div className="absolute top-0 right-0 w-48 h-48 bg-accent/20 blur-[60px] rounded-full" />
             <div className="relative z-10">
-              <h4 className="text-xl font-bold mb-6">What defines our partnership:</h4>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <h4 className="text-xl font-bold mb-8">What defines our partnership:</h4>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 {[
                   "Full Platform Ownership",
                   "Proactive System Maintenance",
@@ -61,11 +62,11 @@ export function AboutUs() {
                   "Security-First Architecture",
                   "Direct Access to Engineers"
                 ].map((value, idx) => (
-                  <div key={idx} className="flex items-center gap-2.5">
-                    <div className="w-5 h-5 rounded-full bg-accent/20 flex items-center justify-center">
-                      <CheckCircle className="text-accent w-3 h-3" />
+                  <div key={idx} className="flex items-center gap-3">
+                    <div className="w-6 h-6 rounded-full bg-accent/20 flex items-center justify-center">
+                      <CheckCircle className="text-accent w-3.5 h-3.5" />
                     </div>
-                    <span className="font-semibold text-sm text-blue-50">{value}</span>
+                    <span className="font-semibold text-base text-blue-50">{value}</span>
                   </div>
                 ))}
               </div>

@@ -1,3 +1,4 @@
+
 "use client";
 
 import React from "react";
@@ -47,12 +48,12 @@ export function ManagedSupport() {
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-3xl mb-20">
+        <div className="max-w-4xl mb-20">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent/20 text-accent text-sm font-bold mb-6">
             <ShieldCheck size={16} />
             <span className="uppercase tracking-widest text-xs">Worry-Free Maintenance</span>
           </div>
-          <h2 className="font-headline text-4xl lg:text-6xl font-black leading-tight mb-8 text-white">
+          <h2 className="font-headline text-3xl lg:text-5xl font-black leading-tight mb-8 text-white">
             Focus on Business. <br /><span className="text-accent">We Handle</span> the Tech.
           </h2>
           <p className="text-lg text-blue-100/70 leading-relaxed max-w-2xl">
@@ -76,9 +77,9 @@ export function ManagedSupport() {
           ))}
         </div>
 
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-10 p-10 rounded-xl border border-accent/30 bg-transparent backdrop-blur-sm text-white">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-10 p-10 rounded-2xl border border-accent/30 bg-transparent backdrop-blur-sm text-white">
           <div className="space-y-2">
-            <h4 className="text-3xl font-black">Ready for a Technical Partner?</h4>
+            <h4 className="text-2xl lg:text-3xl font-black">Ready for a Technical Partner?</h4>
             <p className="font-bold text-base text-blue-100/60">Stop worrying about bugs and start focusing on growth.</p>
           </div>
           <Button asChild size="lg" className="bg-accent text-primary hover:bg-accent/90 font-bold h-14 px-10 rounded-xl text-lg shadow-lg shadow-accent/10">
