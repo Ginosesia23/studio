@@ -30,12 +30,12 @@ export function Hero() {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-up animate-delay-300 mb-24">
-            <Button size="lg" asChild className="bg-accent text-primary hover:bg-accent/90 font-bold h-12 px-8 rounded-xl shadow-xl shadow-accent/20 group border-none text-sm transition-all">
+            <Button size="lg" asChild className="bg-accent text-primary hover:bg-accent/90 font-bold h-11 px-8 rounded-xl shadow-xl shadow-accent/20 group border-none text-sm transition-all">
               <Link href="#contact" className="flex items-center gap-2">
                 Start Project <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
-            <Button size="lg" variant="outline" asChild className="border-white/40 text-white hover:bg-white/10 h-12 px-8 font-bold rounded-xl text-sm transition-all bg-transparent backdrop-blur-sm">
+            <Button size="lg" variant="outline" asChild className="border-white/40 text-white hover:bg-white/10 h-11 px-8 font-bold rounded-xl text-sm transition-all bg-transparent backdrop-blur-sm">
               <Link href="#services">Explore Services</Link>
             </Button>
           </div>
