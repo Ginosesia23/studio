@@ -1,92 +1,97 @@
-
 "use client";
 
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Wrench, LifeBuoy, ShieldCheck, ArrowRight, MessageSquare, Activity, Lock } from "lucide-react";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 export function ManagedSupport() {
   const supportFeatures = [
     {
-      icon: <Wrench className="w-7 h-7 text-accent" />,
-      title: "Ongoing System Updates",
-      description: "We handle all software and system updates to ensure your platform stays current and compatible."
+      icon: <Activity className="w-6 h-6 text-accent" />,
+      title: "Real-time Monitoring",
+      description: "Constant surveillance of your system health and traffic patterns."
     },
     {
-      icon: <LifeBuoy className="w-7 h-7 text-accent" />,
-      title: "Managed Infrastructure",
-      description: "From cloud deployments to database scaling, we manage the technical complexity for you."
+      icon: <ShieldCheck className="w-6 h-6 text-accent" />,
+      title: "Security Shield",
+      description: "Automated patches and proactive threat detection."
     },
     {
-      icon: <MessageSquare className="w-7 h-7 text-accent" />,
-      title: "Custom Feature Requests",
-      description: "Need a new feature? Our team is ready to engineer custom solutions on demand as your business grows."
-    },
-    {
-      icon: <ShieldCheck className="w-7 h-7 text-accent" />,
-      title: "Proactive Security",
-      description: "Regular security audits and automated patches to protect your company and customer data."
-    },
-    {
-      icon: <Activity className="w-7 h-7 text-accent" />,
-      title: "Performance Monitoring",
-      description: "Real-time monitoring to ensure your systems are always running at peak efficiency."
-    },
-    {
-      icon: <Lock className="w-7 h-7 text-accent" />,
-      title: "Data Integrity",
-      description: "Automated backups and rigorous testing to ensure your data is always safe and recoverable."
+      icon: <Lock className="w-6 h-6 text-accent" />,
+      title: "Encrypted Backups",
+      description: "Redundant data protection with zero-fail recovery protocols."
     }
   ];
 
   return (
-    <section id="support" className="py-28 bg-primary text-white overflow-hidden relative">
-      <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
-        <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-accent rounded-full blur-[120px] -translate-x-1/2 -translate-y-1/2" />
-        <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-accent rounded-full blur-[120px] translate-x-1/2 translate-y-1/2" />
-      </div>
+    <section id="support" className="py-32 bg-primary text-white overflow-hidden relative">
+      {/* Background elements for technical feel */}
+      <div className="absolute inset-0 technical-grid opacity-10 pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-accent/10 rounded-full blur-[160px] translate-x-1/2 -translate-y-1/2" />
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-4xl mb-20">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent/20 text-accent text-sm font-bold mb-6">
-            <ShieldCheck size={16} />
-            <span className="uppercase tracking-widest text-xs">Worry-Free Maintenance</span>
-          </div>
-          <h2 className="font-headline text-3xl lg:text-5xl font-black leading-tight mb-8 text-white">
-            Focus on Business. <br /><span className="text-accent">We Handle</span> the Tech.
-          </h2>
-          <p className="text-lg text-blue-100/70 leading-relaxed max-w-2xl">
-            We aren't just a development shop; we are your full-cycle technology partner. 
-            From launching your first platform to engineering custom integrations later, 
-            we ensure everything is perfectly maintained.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-          {supportFeatures.map((feature, idx) => (
-            <div key={idx} className="p-8 rounded-[2rem] bg-white/5 border border-white/10 hover:bg-white/10 transition-all group">
-              <div className="mb-6 transform group-hover:scale-110 transition-transform origin-left">
-                {feature.icon}
-              </div>
-              <h4 className="font-bold text-xl mb-3 text-white">{feature.title}</h4>
-              <p className="text-base text-blue-100/50 leading-relaxed">
-                {feature.description}
-              </p>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+          <div>
+            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-accent text-[10px] font-black uppercase tracking-[0.4em] mb-8">
+              <Activity size={14} className="animate-pulse" />
+              <span>System Watchkeeping</span>
             </div>
-          ))}
-        </div>
-
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-10 p-10 rounded-2xl border border-accent/30 bg-transparent backdrop-blur-sm text-white">
-          <div className="space-y-2">
-            <h4 className="text-2xl lg:text-3xl font-black">Ready for a Technical Partner?</h4>
-            <p className="font-bold text-base text-blue-100/60">Stop worrying about bugs and start focusing on growth.</p>
+            <h2 className="font-headline text-4xl lg:text-6xl font-black leading-[1.1] mb-8 tracking-tighter">
+              Managed Technical <br /><span className="text-accent">Vigilance.</span>
+            </h2>
+            <p className="text-xl text-blue-100/60 leading-relaxed mb-12 font-medium">
+              We monitor, maintain, and secure your digital assets 24/7. Focus on your growth while we engineer your reliability.
+            </p>
+            
+            <div className="space-y-6">
+              {supportFeatures.map((feature, idx) => (
+                <div key={idx} className="flex gap-6 p-6 rounded-2xl hover:bg-white/5 transition-colors border border-transparent hover:border-white/10">
+                  <div className="shrink-0 w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center border border-white/10">
+                    {feature.icon}
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-lg mb-1">{feature.title}</h4>
+                    <p className="text-sm text-blue-100/40 leading-relaxed">{feature.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
-          <Button asChild size="lg" className="bg-accent text-primary hover:bg-accent/90 font-bold h-14 px-10 rounded-xl text-lg shadow-lg shadow-accent/10">
-            <Link href="#contact" className="flex items-center gap-2">
-              Get Started Now <ArrowRight className="w-5 h-5" />
-            </Link>
-          </Button>
+
+          <div className="relative">
+            <div className="aspect-square bg-white/5 rounded-[3rem] border border-white/10 backdrop-blur-3xl p-10 flex flex-col justify-center relative overflow-hidden">
+               <div className="absolute top-0 right-0 p-8">
+                  <Activity className="text-accent w-12 h-12 opacity-50" />
+               </div>
+               <h3 className="text-2xl font-black mb-6 tracking-tight">System Status: <span className="text-green-400">Optimal</span></h3>
+               <div className="space-y-8">
+                 {[
+                   { label: "Uptime", val: "99.99%", color: "bg-accent" },
+                   { label: "Security Score", val: "A+", color: "bg-accent" },
+                   { label: "Latency", val: "12ms", color: "bg-accent" }
+                 ].map((metric, i) => (
+                   <div key={i} className="space-y-3">
+                     <div className="flex justify-between text-xs font-black uppercase tracking-widest text-blue-100/40">
+                       <span>{metric.label}</span>
+                       <span>{metric.val}</span>
+                     </div>
+                     <div className="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
+                       <div className={cn("h-full rounded-full", metric.color)} style={{ width: '95%' }} />
+                     </div>
+                   </div>
+                 ))}
+               </div>
+               <Button asChild size="lg" className="mt-12 bg-accent text-primary hover:bg-accent/90 font-bold h-14 rounded-xl shadow-2xl shadow-accent/20">
+                 <Link href="#contact" className="flex items-center gap-2">
+                   Get Managed Support <ArrowRight className="w-5 h-5" />
+                 </Link>
+               </Button>
+            </div>
+            {/* Decorative orbit */}
+            <div className="absolute -inset-10 border border-white/5 rounded-full animate-[spin_20s_linear_infinite] pointer-events-none" />
+          </div>
         </div>
       </div>
     </section>
