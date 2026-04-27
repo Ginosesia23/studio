@@ -4,15 +4,15 @@
 
 @layer base {
   :root {
-    /* Brand Deep Navy: #021123 */
-    --primary: 213 89% 7%;
+    /* Apex Trustworthy Blue: #29427A */
+    --primary: 222 50% 32%;
     --primary-foreground: 210 40% 98%;
 
-    /* Vibrant Cyan: #24C5DB */
+    /* Apex Vibrant Cyan: #24C5DB */
     --accent: 187 72% 50%;
     --accent-foreground: 222 47% 11%;
 
-    /* Cool Off-white Background: #EEF3F7 */
+    /* Apex Cool Off-white: #EEF3F7 */
     --background: 206 31% 95%;
     --foreground: 222 47% 11%;
 
@@ -26,10 +26,10 @@
     --muted-foreground: 215.4 16.3% 46.9%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
+    --border: 214.3 31.8% 85%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 213 89% 7%;
-    --radius: 0.75rem;
+    --ring: 222 50% 32%;
+    --radius: 1rem;
   }
 }
 
@@ -45,20 +45,19 @@
   }
 }
 
-.glass-effect {
-  @apply bg-white/10 backdrop-blur-md border border-white/20;
+.blueprint-grid {
+  background-size: 30px 30px;
+  background-image: radial-gradient(circle, hsl(var(--primary) / 0.05) 1px, transparent 1px);
 }
 
-.technical-grid {
-  background-size: 40px 40px;
-  background-image: linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+.glass-panel {
+  @apply bg-white/70 backdrop-blur-xl border border-white/20 shadow-sm;
 }
 
 @keyframes fade-up {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(15px);
   }
   to {
     opacity: 1;
@@ -67,18 +66,9 @@
 }
 
 .animate-fade-up {
-  animation: fade-up 0.8s ease-out forwards;
+  animation: fade-up 0.6s ease-out forwards;
 }
 
 .animate-delay-100 { animation-delay: 100ms; }
 .animate-delay-200 { animation-delay: 200ms; }
 .animate-delay-300 { animation-delay: 300ms; }
-
-@keyframes pulse-cyan {
-  0%, 100% { opacity: 0.4; }
-  50% { opacity: 0.8; }
-}
-
-.animate-pulse-cyan {
-  animation: pulse-cyan 3s infinite;
-}
