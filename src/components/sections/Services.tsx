@@ -1,83 +1,148 @@
 "use client";
 
 import React from "react";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
-import { Code2, Settings, Puzzle, ChevronRight, Activity } from "lucide-react";
+import { Code2, Settings, Puzzle, Rocket } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export function Services() {
   const services = [
     {
+      step: "Step 1",
+      eyebrow: "Build",
       title: "Platform Creation",
-      focus: "Build",
-      description: "Custom high-performance websites and complex digital platforms engineered for performance.",
-      icon: <Code2 className="w-6 h-6 text-accent" />,
-      features: ["Next.js Architecture", "Scalable Databases", "Cloud Infrastructure"]
+      description:
+        "Custom high-performance websites and complex digital platforms engineered for performance.",
+      features: ["Next.js Architecture", "Scalable Databases", "Cloud Infrastructure"],
+      icon: <Code2 className="w-6 h-6" />,
+      tone: "blue",
     },
     {
+      step: "Step 2",
+      eyebrow: "Maintain",
       title: "Managed Maintenance",
-      focus: "Maintain",
-      description: "Full-cycle technical oversight, security updates, and performance tuning for your systems.",
-      icon: <Settings className="w-6 h-6 text-accent" />,
-      features: ["Security Patching", "Uptime Monitoring", "Performance Audits"]
+      description:
+        "Full-cycle technical oversight, security updates, and performance tuning for your systems.",
+      features: ["Security Patching", "Uptime Monitoring", "Performance Audits"],
+      icon: <Settings className="w-6 h-6" />,
+      tone: "violet",
     },
     {
+      step: "Step 3",
+      eyebrow: "Evolve",
       title: "Custom Feature Dev",
-      focus: "Evolve",
-      description: "Bespoke engineering for new workflows and integrations as your business logic expands.",
-      icon: <Puzzle className="w-6 h-6 text-accent" />,
-      features: ["API Engineering", "Process Automation", "Third-party Sync"]
-    }
-  ];
+      description:
+        "Bespoke engineering for new workflows and integrations as your business logic expands.",
+      features: ["API Engineering", "Process Automation", "Third-party Sync"],
+      icon: <Puzzle className="w-6 h-6" />,
+      tone: "mint",
+    },
+  ] as const;
+
+  const toneStyles: Record<
+    string,
+    { panel: string; iconBg: string; iconColor: string; eyebrow: string; chip: string }
+  > = {
+    blue: {
+      panel: "pastel-blue",
+      iconBg: "bg-white",
+      iconColor: "text-[hsl(var(--pastel-blue-ink))]",
+      eyebrow: "text-[hsl(var(--pastel-blue-ink))]",
+      chip: "bg-white/70 text-[hsl(var(--pastel-blue-ink))]",
+    },
+    violet: {
+      panel: "pastel-violet",
+      iconBg: "bg-white",
+      iconColor: "text-[hsl(var(--pastel-violet-ink))]",
+      eyebrow: "text-[hsl(var(--pastel-violet-ink))]",
+      chip: "bg-white/70 text-[hsl(var(--pastel-violet-ink))]",
+    },
+    mint: {
+      panel: "pastel-mint",
+      iconBg: "bg-white",
+      iconColor: "text-[hsl(var(--pastel-mint-ink))]",
+      eyebrow: "text-[hsl(var(--pastel-mint-ink))]",
+      chip: "bg-white/70 text-[hsl(var(--pastel-mint-ink))]",
+    },
+  };
 
   return (
-    <section id="services" className="py-24 bg-white border-y border-border/50">
+    <section id="services" className="py-24 bg-background">
       <div className="container mx-auto px-6">
-        <div className="max-w-3xl mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 text-accent text-[10px] font-bold uppercase tracking-widest mb-4">
-            <Activity size={12} />
-            <span>Core Capabilities</span>
+        <div className="max-w-3xl mx-auto text-center mb-16">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-secondary border border-border/60 text-foreground/70 text-xs font-semibold mb-6">
+            <Rocket size={14} className="text-accent" />
+            <span>Core Capabilities &middot; End-to-End Engineering</span>
           </div>
-          <h2 className="font-headline text-3xl lg:text-5xl font-bold text-primary mb-6 tracking-tight">
-            Engineering Excellence. <br />No Compromises.
+          <h2 className="font-headline text-3xl lg:text-5xl font-bold text-primary mb-5 tracking-tight">
+            Engineering Excellence. <span className="text-accent">No Compromises.</span>
           </h2>
-          <p className="text-lg text-muted-foreground font-medium">
-            From initial architecture to continuous optimization, we provide the technical 
+          <p className="text-lg text-muted-foreground leading-relaxed">
+            From initial architecture to continuous optimization, we provide the technical
             foundation your business needs to grow.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {services.map((service, idx) => (
-            <Card key={idx} className="border border-border/60 shadow-none hover:shadow-xl hover:border-accent/40 transition-all rounded-3xl overflow-hidden bg-background/20 group">
-              <CardHeader className="p-8 pb-4">
-                <div className="mb-6 w-12 h-12 rounded-xl bg-primary flex items-center justify-center text-white group-hover:scale-105 transition-transform">
-                  {service.icon}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {services.map((service, idx) => {
+            const t = toneStyles[service.tone];
+            return (
+              <div
+                key={idx}
+                className={cn(
+                  "relative rounded-3xl border border-border/60 p-8 overflow-hidden transition-all hover:shadow-md",
+                  t.panel
+                )}
+              >
+                {/* STEP pill */}
+                <div className="absolute top-5 left-5">
+                  <span className="inline-flex items-center px-3 py-1 rounded-full bg-white/90 border border-white/80 text-[10px] font-bold uppercase tracking-widest text-primary shadow-sm">
+                    {service.step}
+                  </span>
                 </div>
-                <div className="space-y-1">
-                  <p className="text-[10px] font-bold text-accent uppercase tracking-widest">{service.focus}</p>
-                  <CardTitle className="text-2xl font-bold text-primary tracking-tight">{service.title}</CardTitle>
-                </div>
-                <CardDescription className="text-muted-foreground pt-4 leading-relaxed font-medium">
-                  {service.description}
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="p-8 pt-4">
-                <div className="pt-6 border-t border-border/50">
-                  <ul className="space-y-3 mb-8">
-                    {service.features.map((feature, fIdx) => (
-                      <li key={fIdx} className="flex items-center gap-3 text-sm font-bold text-primary/80">
-                        <div className="w-1.5 h-1.5 rounded-full bg-accent/40" />
+
+                <div className="pt-12">
+                  <div
+                    className={cn(
+                      "w-12 h-12 rounded-xl flex items-center justify-center mb-6 shadow-sm border border-white/80",
+                      t.iconBg,
+                      t.iconColor
+                    )}
+                  >
+                    {service.icon}
+                  </div>
+
+                  <p
+                    className={cn(
+                      "text-[10px] font-bold uppercase tracking-[0.2em] mb-2",
+                      t.eyebrow
+                    )}
+                  >
+                    {service.eyebrow}
+                  </p>
+                  <h3 className="text-2xl font-bold text-primary tracking-tight mb-3">
+                    {service.title}
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed mb-6">
+                    {service.description}
+                  </p>
+
+                  <div className="flex flex-wrap gap-2">
+                    {service.features.map((feature) => (
+                      <span
+                        key={feature}
+                        className={cn(
+                          "inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold border border-white/80",
+                          t.chip
+                        )}
+                      >
                         {feature}
-                      </li>
+                      </span>
                     ))}
-                  </ul>
-                  <button className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-primary hover:text-accent transition-colors">
-                    Learn More <ChevronRight className="w-4 h-4" />
-                  </button>
+                  </div>
                 </div>
-              </CardContent>
-            </Card>
-          ))}
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

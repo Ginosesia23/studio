@@ -4,33 +4,44 @@
 
 @layer base {
   :root {
-    /* Apex Trustworthy Blue: #29427A */
-    --primary: 222 50% 32%;
+    /* Yacht-style deep navy: #0F2D5C */
+    --primary: 217 72% 21%;
     --primary-foreground: 210 40% 98%;
 
-    
-    /* Apex Vibrant Cyan: #24C5DB */
-    --accent: 187 72% 50%;
-    --accent-foreground: 222 47% 11%;
+    /* Bright cobalt accent: #2563EB */
+    --accent: 221 83% 53%;
+    --accent-foreground: 0 0% 100%;
 
-    /* Apex Cool Off-white: #EEF3F7 */
-    --background: 206 31% 95%;
-    --foreground: 222 47% 11%;
+    /* Soft off-white-blue backdrop: #F4F6FA */
+    --background: 220 28% 97%;
+    --foreground: 217 50% 16%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    --card-foreground: 217 50% 16%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222 47% 11%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --destructive: 0 84.2% 60.2%;
+    --popover-foreground: 217 50% 16%;
+    --secondary: 220 25% 94%;
+    --secondary-foreground: 217 72% 21%;
+    --muted: 220 25% 94%;
+    --muted-foreground: 217 15% 45%;
+    --destructive: 0 75% 55%;
     --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 85%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222 50% 32%;
+    --border: 220 20% 90%;
+    --input: 220 20% 92%;
+    --ring: 221 83% 53%;
     --radius: 1rem;
+
+    /* Pastel card surfaces */
+    --pastel-blue: 210 100% 96%;
+    --pastel-blue-ink: 217 92% 33%;
+    --pastel-violet: 268 70% 96%;
+    --pastel-violet-ink: 263 60% 45%;
+    --pastel-mint: 152 60% 94%;
+    --pastel-mint-ink: 158 65% 32%;
+    --pastel-peach: 28 100% 95%;
+    --pastel-peach-ink: 22 75% 45%;
+    --pastel-rose: 350 100% 96%;
+    --pastel-rose-ink: 345 65% 45%;
   }
 }
 
@@ -46,14 +57,21 @@
   }
 }
 
-.blueprint-grid {
-  background-size: 30px 30px;
-  background-image: radial-gradient(circle, hsl(var(--primary) / 0.05) 1px, transparent 1px);
+/* Soft hero radial wash: gentle blue glow on near-white canvas */
+.hero-wash {
+  background:
+    radial-gradient(60% 50% at 50% 0%, hsl(221 100% 92% / 0.7) 0%, transparent 70%),
+    radial-gradient(40% 35% at 85% 25%, hsl(221 83% 70% / 0.18) 0%, transparent 70%),
+    radial-gradient(40% 35% at 15% 35%, hsl(268 70% 80% / 0.18) 0%, transparent 70%);
 }
 
-.glass-panel {
-  @apply bg-white/70 backdrop-blur-xl border border-white/20 shadow-sm;
-}
+/* Pastel gradient panels for step / feature cards */
+.pastel-blue   { background: linear-gradient(135deg, hsl(210 100% 97%) 0%, hsl(210 100% 92%) 100%); }
+.pastel-violet { background: linear-gradient(135deg, hsl(268 70% 97%) 0%, hsl(268 70% 92%) 100%); }
+.pastel-mint   { background: linear-gradient(135deg, hsl(152 60% 96%) 0%, hsl(152 60% 90%) 100%); }
+.pastel-peach  { background: linear-gradient(135deg, hsl(28 100% 96%) 0%, hsl(28 100% 90%) 100%); }
+.pastel-rose   { background: linear-gradient(135deg, hsl(350 100% 97%) 0%, hsl(350 100% 92%) 100%); }
+.pastel-slate  { background: linear-gradient(135deg, hsl(220 30% 98%) 0%, hsl(220 30% 93%) 100%); }
 
 @keyframes fade-up {
   from {

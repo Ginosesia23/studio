@@ -20,6 +20,18 @@
       "imageHint": "seajourney logo"
     },
     {
+      "id": "logo-courseiq",
+      "description": "CourseIQ Logo",
+      "imageUrl": "/courseiq-logo.png",
+      "imageHint": "courseiq logo"
+    },
+    {
+      "id": "logo-sudoku26",
+      "description": "Sudoku26 Logo",
+      "imageUrl": "/sudoku26-logo.png",
+      "imageHint": "sudoku26 logo"
+    },
+    {
       "id": "logo-apex-partner",
       "description": "Apex Systems partner logo",
       "imageUrl": "https://picsum.photos/seed/apex-systems-logo/400/160",
